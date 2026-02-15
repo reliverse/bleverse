@@ -1,0 +1,30 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.formatOnSave": true,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.selectionClipboard": false,
+  "files.associations": {
+    "LICENSE": "plaintext",
+    "NOTICE": "plaintext",
+    "*.json": "json"
+  },
+  "files.autoSave": "afterDelay",
+  "json.schemaDownload.enable": true,
+  "markdownlint.config": {
+    "MD031": false,
+    "MD032": false,
+    "MD022": false,
+    "MD033": false,
+    "MD041": false
+  },
+  "typescript.experimental.useTsgo": true,
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
+    "^(node:)?os$"
+  ]
+}

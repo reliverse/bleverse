@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "arktypeio.arkdark",
+    "biomejs.biome",
+    "bradlc.vscode-tailwindcss",
+    "chunsen.bracket-select",
+    "davidanson.vscode-markdownlint",
+    "lucasvtiradentes.tscanner-vscode",
+    "oven.bun-vscode",
+    "typescriptteam.native-preview",
+    "usernamehw.errorlens",
+    "usernamehw.remove-empty-lines",
+    "yoavbls.pretty-ts-errors"
+  ]
+}
