@@ -6,12 +6,30 @@ node_modules/
 .env.*
 !.env.example
 
+# Declaration files
+next-env.d.ts
+expo-env.d.ts
+
 # Build output
 *.tsbuildinfo
-.output
-dist
+.tanstack/
+.output/
+.cache/
+.nitro/
+.next/
+.expo/
+build/
+dist/
+out/
 
 # Logs
-logs
+logs/
 *.log
 
+# OS
+.DS_Store
+Thumbs.db
+
+# Monorepo
+.vercel/
+.turbo/
