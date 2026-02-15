@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "LICENSE": "plaintext",
+        "NOTICE": "plaintext",
+        "*.json": "json"
+    }
+}
