@@ -1,10 +1,10 @@
 # Bleverse
 
-[bleverse.com](https://bleverse.com) is a fully open-source social platform built around clarity, consent, and modular architecture.
+[bleverse.com](https://bleverse.com) is an open-source social platform built around clarity, consent, and modular architecture.
 
 **Calm by default. Powerful by design.**
 
-Bleverse is not just a social network. It's...
+Bleverse isn't just a social network:
 
 - A place where identity and projects can stay.
 - A modular foundation for human-first platforms.
@@ -23,6 +23,38 @@ Bleverse is not just a social network. It's...
 - Ranking is explainable.
 - Accessibility by default.
 - Personalization is explicit.
+
+## Contributing
+
+We welcome contributions.
+
+- [Report issues](https://github.com/bleverse/bleverse/issues)
+- [Contribute code](CONTRIBUTING.md)
+- [Support financially](https://github.com/sponsors/blefnk)
+
+### Code Contributing Quickstart
+
+1. Fork this repo
+2. Clone your fork
+3. Install deps
+4. Run dev server
+
+```bash
+git clone https://github.com/your-fork-username/bleverse.git
+cd bleverse
+bun install
+bun dev:web
+```
+
+> **Project Status**: v0.x. Work in progress. APIs and features may change.
+
+## Documentation
+
+Docs live on [docs.bleverse.com](https://docs.bleverse.com) and in [apps/docs](apps/docs).
+
+## Security
+
+If you find a security issue, please report it privately (see [SECURITY.md](SECURITY.md)).
 
 ## License
 
