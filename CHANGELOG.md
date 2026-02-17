@@ -32,8 +32,8 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0) and
 - Initial public release.
 
 ### Released
-[Unreleased]: https://github.com/bleverse/bleverse/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/bleverse/bleverse/releases/tag/v0.1.0
+[Unreleased]: https://github.com/reliverse/bleverse/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/reliverse/bleverse/releases/tag/v0.1.0
 
 <!--
 Guidelines:
@@ -45,6 +45,6 @@ Guidelines:
   - `apps/docs:` ...
   - `packages/auth:` ...
 - Link versions at the bottom if you want:
-  [Unreleased]: https://github.com/bleverse/bleverse/compare/v0.1.0...HEAD
-  [0.1.0]: https://github.com/bleverse/bleverse/releases/tag/v0.1.0
+  [Unreleased]: https://github.com/reliverse/bleverse/compare/v0.1.0...HEAD
+  [0.1.0]: https://github.com/reliverse/bleverse/releases/tag/v0.1.0
 -->

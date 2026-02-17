@@ -18,14 +18,10 @@ Thanks for wanting to help. Bleverse is built around clarity, consent, and modul
 
 ## Development Setup
 
-> Note: this repository uses [Bun](https://bun.com) as the package manager, a runtime, and a testing framework.
-
-If you're unsure what to run for a specific package/app, check the nearest `package.json` scripts.
-
 1. Fork this repo
 2. Clone your fork
 3. Install deps
-4. Run the dev server
+4. Run dev server
 
 ```bash
 git clone https://github.com/your-fork-username/bleverse.git
@@ -34,7 +30,11 @@ bun install
 bun dev:web
 ```
 
-> **Project Status**: v0.x. Work in progress. APIs and features may change.
+If you're unsure what to run for a specific package/app, check the nearest `package.json` scripts.
+
+Note that our codebase uses [Bun](https://bun.com) as the package manager, a runtime, and a testing framework.
+
+> **Project status**: v0.x. Work in progress. APIs and features may change.
 
 ## Code Style
 

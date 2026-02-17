@@ -28,25 +28,9 @@ Bleverse isn't just a social network:
 
 We welcome contributions.
 
-- [Report issues](https://github.com/bleverse/bleverse/issues)
-- [Contribute code](CONTRIBUTING.md)
+- [Report issues or suggest features](https://github.com/reliverse/bleverse/issues)
 - [Support financially](https://github.com/sponsors/blefnk)
-
-### Code Contributing Quickstart
-
-1. Fork this repo
-2. Clone your fork
-3. Install deps
-4. Run dev server
-
-```bash
-git clone https://github.com/your-fork-username/bleverse.git
-cd bleverse
-bun install
-bun dev:web
-```
-
-> **Project Status**: v0.x. Work in progress. APIs and features may change.
+- [Contribute code](CONTRIBUTING.md)
 
 ## Documentation
 
