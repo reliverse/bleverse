@@ -1,173 +1,251 @@
-# Bleverse Roadmap (Monorepo)
+# Bleverse Monorepo Roadmap
 
-This is a **direction**, not a promise. Priorities may shift based on feedback, maintainer time, and what we learn while building.
+This roadmap describes **direction**, not guarantees. Priorities may shift based on feedback, maintainer time, and architecture constraints.
 
 ## North Star
-- Calm UX, no attention traps
-- Modularity over monoliths
-- Accessibility by default
-- Transparent, explainable system behavior
-- Consent-first settings and personalization
 
-## Global TODO (not tied to a single package)
+- Calm, focused UX (no dark patterns)
+- Modular platform architecture
+- Explicit system behavior
+- Accessibility by default
+- Consent-first configuration
+- Clear architectural boundaries
+
+## Definition of Done
+
+- Types validated
+- No boundary violations
+- Accessibility sanity pass
+- Documentation updated
+- Breaking changes documented
+- Dependency graph unchanged (unless intentional)
+
+## Global TODOs (Cross-Cutting)
 
 ### Product / UX
-- [ ] Onboarding: short, clear, with explicit consent/personalization toggles
-- [ ] "Feed optional" as a first-class mode (no degraded experience)
-- [ ] Privacy/visibility policies: consistent language and consistent behavior everywhere
-- [ ] Copy tone: calm + clear microcopy (empty states, errors, prompts)
+
+- [ ] Short onboarding with explicit personalization toggles
+- [ ] Feed as optional module (non-core)
+- [ ] Unified privacy language + consistent visibility rules
+- [ ] Calm microcopy (no urgency mechanics)
+- [ ] Clear settings visibility (explainable system state)
 
 ### Platform / Security / Reliability
-- [ ] Lightweight threat model + security checklist for releases
-- [ ] Baseline rate limiting / abuse protection
-- [ ] Audit trail for critical actions (login, email changes, permissions, payments)
-- [ ] Backups/restore plan + periodic restore tests
-- [ ] Minimum observability: structured logs, error reporting, health endpoints, basic metrics
 
-### DX / Repo hygiene
-- [ ] One "Quickstart" (one-command boot) + "Architecture overview"
-- [ ] CI: lint/typecheck/test/build across all workspaces
-- [ ] Release discipline: Conventional Commits / Changesets (or equivalent) + automated changelog
-- [ ] Versioning policy: define what counts as "public API" and what guarantees exist
-- [ ] Templates: issue/PR templates + label taxonomy (`roadmap`, `help wanted`, etc.)
+- [ ] Lightweight threat model + release checklist
+- [ ] Baseline rate limiting
+- [ ] Audit trail (auth, permissions, billing)
+- [ ] Backup + restore verification
+- [ ] Structured logging + health endpoints
+- [ ] Core metrics (latency, errors, usage)
+
+### DX / Repo Hygiene
+
+- [ ] One-command Quickstart
+- [ ] CI: typecheck / lint / test / build
+- [ ] Versioning policy (public API boundaries)
+- [ ] Conventional commits or equivalent
+- [ ] Issue/PR templates + label taxonomy
+- [ ] Clear dependency graph documentation
 
 ## apps/
 
-### apps/web (web platform)
-> `apps/web` contains multiple web targets:
-> - `apps/web/main` — the primary web client
-> - `apps/web/docs` — the documentation site
+Deployable runtimes.
 
-#### apps/web/main (primary web client)
-- [ ] App shell: navigation, layouts, routing, error boundaries
-- [ ] Auth UX: sign-in/up, sessions, logout, basic session management UI
-- [ ] Profile: edit, privacy, field visibility, public profile page
-- [ ] Feed (optional): hard "disable feed" mode + alternative views (projects/updates)
-- [ ] Accessibility pass: keyboard nav, focus states, screen reader sanity
-- [ ] Performance: core web vitals, caching, bundle optimization
+### apps/api (api.bleverse.com)
 
-#### apps/web/docs (documentation site)
-- [ ] Architecture overview: "apps vs packages", data flows
-- [ ] Setup + troubleshooting (common failures + fixes)
-- [ ] Consent/privacy model explained (product + technical)
-- [ ] Contribution guide: where things live, how to add features safely
-- [ ] ADRs (short decision records) for major architectural choices
+Thin runtime wrapper over `@repo/server`.
 
-### apps/api (server API / backend endpoints)
-- [ ] Auth middleware + baseline RBAC/permissions
-- [ ] Request validation + unified error shape (user-facing vs internal)
-- [ ] Rate limiting (IP + account scoped)
-- [ ] Health endpoints + readiness/liveness
-- [ ] Jobs/queues if needed: email, webhooks, cleanup, billing events
-- [ ] API versioning strategy (if public): `/v1` or equivalent approach
+- [ ] Auth middleware wiring
+- [ ] Public API versioning (`/v1`)
+- [ ] Rate limiting (IP + account)
+- [ ] Health + readiness checks
+- [ ] Job orchestration (email, billing, cleanup)
+- [ ] Error normalization (public vs internal)
+- [ ] Observability wiring
 
-### apps/cli (dev/admin tooling)
-- [ ] `bleverse dev` / `bleverse doctor` (env, service, and dependency checks)
-- [ ] Generators: scaffold package/module/component
-- [ ] Admin helpers: create-user, reset-password, seed, migrate (local/dev)
-- [ ] Release helpers: notes/changelog tooling (if this fits the workflow)
+### apps/web (bleverse.com)
 
-### apps/mobile (mobile client)
-- [ ] Auth flow + secure session storage
-- [ ] Key screen parity with web (profile/posts/projects)
-- [ ] Offline-friendly states (minimum: graceful degradation)
-- [ ] Notifications (explicit opt-in only)
-- [ ] Accessibility: gestures, safe areas, screen reader checks
+- [ ] App shell (routing + layout)
+- [ ] Auth UX
+- [ ] Profile + visibility controls
+- [ ] Optional feed module
+- [ ] Accessibility pass
+- [ ] Core Web Vitals optimization
+- [ ] Consent-first personalization
 
-### apps/desktop (desktop client)
-- [ ] App shell + updates strategy (if applicable)
-- [ ] System integration (deep links, files, protocols) as needed
-- [ ] Shared UI with web (maximize shared code)
-- [ ] Secure storage for tokens
-- [ ] Crash/error reporting (opt-in, transparent)
+### apps/mobile
 
-## components/ (shared components)
+- [ ] Auth flow
+- [ ] Secure session storage
+- [ ] Screen parity with web
+- [ ] Offline tolerance
+- [ ] Opt-in notifications
+- [ ] Accessibility review
 
-> `cts` is short for **components** (shared building blocks / component sets).
+### apps/desktop
+
+- [ ] Shell + update strategy
+- [ ] Secure token storage
+- [ ] Deep links
+- [ ] Shared UI with web
+- [ ] Transparent crash reporting
+
+### apps/cli
+
+- [ ] `bleverse dev`
+- [ ] `bleverse doctor`
+- [ ] Scaffold generators
+- [ ] Admin helpers (seed, migrate, create-user)
+- [ ] Release helpers
+
+## components/
+
+Presentation layer only.
 
 ### components/web
-- [ ] Shared UI kit: buttons/forms/dialogs/toasts/tables/empty states
-- [ ] A11y patterns: focus management, aria, keyboard shortcuts
-- [ ] Shared "cts" conventions: naming, props, composition patterns
-- [ ] Component previews/docs (Storybook or similar) if useful
 
-### components/expo
-- [ ] Component parity with web where reasonable (names/props/behavior)
-- [ ] Shared "cts" conventions aligned with web
-- [ ] Navigation patterns: stack/tab, modals, sheets
+/blocks
+
+- [ ] Feature-level composition blocks
+- [ ] A11y primitives (focus, ARIA, keyboard patterns)
+- [ ] Shared composition conventions
+
+/ui
+
+- [ ] Button, form, dialog, toast primitives
+- [ ] Empty states
+- [ ] Accessible defaults
+
+## components/mobile
+
+/blocks
+
+- [ ] Feature-level mobile compositions
+- [ ] Navigation patterns
+
+/ui
+
+- [ ] Shared mobile primitives
+- [ ] Accessible defaults
 
 ## packages/
 
-### packages/env
-- [ ] Typed env schema + fail-fast validation
-- [ ] Split: server-only vs client-exposed vars
-- [ ] Document variables + provide `.env.example`
+Reusable platform modules.
 
-### packages/auth
-- [ ] Core auth: session management, refresh, revoke
-- [ ] Permissions model (baseline): user/admin/roles/scopes
-- [ ] Multi-device sessions + audit events
-- [ ] Account recovery flow (email-based) + hardening
+### packages/server
+
+Backend runtime core.
+
+- [ ] Route composition system
+- [ ] Unified error model
+- [ ] Middleware architecture
+- [ ] Dependency injection pattern (if needed)
+- [ ] Observability hooks
+- [ ] Public API boundary enforcement
+
+### packages/sdk
+
+Public client contract layer.
+
+- [ ] Typed API client
+- [ ] DTO definitions
+- [ ] Error normalization
+- [ ] Auth-aware client (token refresh)
+- [ ] Stable versioning guarantees
+- [ ] Clear separation from server runtime
 
 ### packages/db
-- [ ] Canonical data models/schemas
-- [ ] Indexing + migration strategy alignment
-- [ ] Seed fixtures for dev/test
-- [ ] Backup/restore primitives (docs + scripts)
 
-### packages/drizzle
-- [ ] Drizzle config as a single source of truth
-- [ ] Migrations: generate/run/status checks
-- [ ] Type-safe query/repository helpers
+Persistence layer.
 
-### packages/api (shared contracts/client)
-- [ ] Shared contracts (DTO/types) across web/mobile/desktop and apps/api
-- [ ] Typed client (fetch wrapper) + error normalization
-- [ ] Auth-aware client (headers, token refresh, retry rules)
+- [ ] Canonical schema
+- [ ] Migration strategy
+- [ ] Indexing strategy
+- [ ] Seed fixtures
+- [ ] Backup/restore docs
 
-### packages/email
-- [ ] Transactional emails: verify, reset, security alerts
-- [ ] Templates + optional i18n
-- [ ] Rate limits + bounce/complaint handling (baseline)
+### packages/auth
+
+- [ ] Session lifecycle
+- [ ] Role/scopes model
+- [ ] Multi-device sessions
+- [ ] Audit events
+- [ ] Hardened recovery flow
+
+### packages/billing
+
+- [ ] Plans + entitlements
+- [ ] Subscription lifecycle
+- [ ] Webhook ingestion
+- [ ] Idempotency guarantees
+- [ ] Transparent billing UX principles
 
 ### packages/storage
-- [ ] Storage abstraction (local/object storage) + signed URLs
-- [ ] Access policies (private/public/unlisted)
-- [ ] File type/size limits + optional virus scan hook
+
+- [ ] Storage abstraction
+- [ ] Signed URLs
+- [ ] Access policies
+- [ ] File constraints
 
 ### packages/kv
-- [ ] KV for rate limiting, session cache, feature flags
-- [ ] Namespacing + TTL rules
-- [ ] Dev fallback (in-memory) for local runs
 
-### packages/payments
-- [ ] Billing primitives: plans, entitlements, invoices (baseline)
-- [ ] Webhooks ingestion + idempotency guarantees
-- [ ] Consent-first billing UX (no hidden auto-upsells)
+- [ ] Namespaced keys
+- [ ] TTL rules
+- [ ] Dev fallback
+- [ ] Rate limiting primitives
+
+### packages/email
+
+- [ ] Transactional templates
+- [ ] Optional i18n
+- [ ] Bounce handling
+- [ ] Rate limiting
+
+### packages/env
+
+- [ ] Typed schema
+- [ ] Server/client split
+- [ ] Fail-fast validation
+- [ ] `.env.example`
 
 ### packages/convex
-- [ ] Define scope clearly: what lives here and why
-- [ ] Data sync contracts + offline strategy (if used)
-- [ ] Observability/limits: latency, quotas, retries
 
-## tooling/
+Cloud-specific backend logic.
 
-### tooling/tsconfig
-- [ ] One TS policy: strict, moduleResolution, path aliases
-- [ ] Shared base configs for apps/packages/components
+- [ ] Clear scope definition
+- [ ] Sync contracts
+- [ ] Retry strategy
+- [ ] Observability
+- [ ] Data ownership clarity
 
-### tooling/tailwind
-- [ ] Design tokens as code: spacing, typography, radii, shadows
-- [ ] Themes (light/dark) + a11y contrast defaults
-- [ ] Shared presets across web/docs (and wherever needed)
+### packages/tailwind
 
-### tooling/sdk
-- [ ] Internal SDK for shared utilities and conventions
-- [ ] Guardrails where possible (lint rules / patterns aligned with "no dark patterns")
-- [ ] Shared logging/telemetry helpers (opt-in)
+Design preset.
 
-## Definition of Done (PR hygiene)
-- [ ] Tests or checks when logic changes
-- [ ] Docs updated (`apps/web/docs`) when behavior changes
-- [ ] A11y sanity pass for UI changes
-- [ ] No silent breaking changes (note in CHANGELOG)
+- [ ] Design tokens
+- [ ] Light/dark themes
+- [ ] Accessible contrast
+- [ ] Shared preset across apps
+
+### packages/tsconfig
+
+- [ ] Unified strict policy
+- [ ] Shared base configs
+- [ ] Path aliases
+
+## documentation/
+
+- [ ] Architecture overview (apps vs packages)
+- [ ] Dependency graph
+- [ ] Setup guide
+- [ ] Contribution guide
+- [ ] Consent/privacy model
+- [ ] ADRs for major changes
+
+## scripts/
+
+- [ ] CI helpers
+- [ ] Release scripts
+- [ ] Migration scripts
+- [ ] Backup scripts

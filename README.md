@@ -4,17 +4,19 @@
 
 **Calm by default. Powerful by design.**
 
-Bleverse isn't just a social network:
+Bleverse is not just a social network. It is:
 
 - A place where identity and projects can stay.
 - A modular foundation for human-first platforms.
 - A reference implementation of ethical social infrastructure.
+- A bun-based TS monorepo built for long-term maintainability.
 
 ## Principles
 
 - Designed to respect attention.
-- Built to be transparent.
+- Clear system boundaries.
 - Open by architecture.
+- Modular by design.
 
 ## Philosophy
 
@@ -22,26 +24,75 @@ Bleverse isn't just a social network:
 - Feed is optional.
 - Ranking is explainable.
 - Accessibility by default.
-- Personalization is explicit.
+- Consent precedes automation.
+- System actions are visible and reversible.
+- Personalization is explicit and user-controlled.
 
 ## Contributing
 
-We welcome contributions.
+We welcome contributions ❤️
 
 - [Report issues or suggest features](https://github.com/reliverse/bleverse/issues)
-- [Support financially](https://github.com/sponsors/blefnk)
-- [Contribute code](CONTRIBUTING.md)
+- [Support financially via GitHub Sponsors](https://github.com/sponsors/blefnk)
+- Contribute code ([contributing.md](CONTRIBUTING.md)/[roadmap.md](ROADMAP.md))
 
 ## Documentation
 
-Docs live on [docs.bleverse.com](https://docs.bleverse.com) and in [apps/docs](apps/docs).
+Documentation lives on [https://docs.bleverse.com](https://docs.bleverse.com)
+
+## Code Contribution Quickstart
+
+```bash
+bun install
+bun dev:web
+
+# Exact commands may vary by app
+# Please refer to documentation
+```
+
+## Architecture
+
+Bleverse is structured as a modular monorepo:
+
+```bash
+apps/         → deployable runtimes
+packages/     → reusable platform modules
+components/   → UI libraries (web & mobile)
+scripts/      → automation
+documentation/
+```
+
+Core Layers
+
+- `packages/server` → backend runtime core
+- `packages/sdk` → public client contract layer
+- `packages/db` → persistence layer
+- `packages/auth` → identity & sessions
+- `packages/billing` → subscriptions & entitlements
+- `packages/storage` → file abstraction
+- `packages/convex` → cloud backend logic
+
+Applications:
+
+- `apps/api` → backend entrypoint
+- `apps/web` → bleverse.com
+- `apps/cli`
+- `apps/mobile`
+- `apps/desktop`
+
+Clear boundaries are enforced:
+
+- Apps depend on packages.
+- SDK never depends on server.
+- Packages never depend on apps.
+- Database layer is isolated from runtime.
 
 ## Security
 
-If you find a security issue, please report it privately (see [SECURITY.md](SECURITY.md)).
+If you find a security issue, report it privately. See [SECURITY.md](SECURITY.md).
 
 ## License
 
-Copyright © 2026–present [Nazarii Korniienko](https://github.com/blefnk)
+Copyright © 2026–present Nazarii Korniienko
 
-The repository is licensed under the [Apache License 2.0](LICENSE). Some apps/packages may be licensed differently. See the `LICENSE` file inside each app and package for details.
+Licensed under the [Apache License 2.0](LICENSE). Some apps or packages may define additional licenses. See individual `LICENSE` files for details.

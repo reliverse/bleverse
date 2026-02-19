@@ -4,132 +4,222 @@ description: Engineering and architectural standards for the Bun + TypeScript + 
 license: MIT
 ---
 
+# Code Standards
+
 ## Overview
 
 This repository is a **Bun-based monorepo** written in **TypeScript (strict mode)** and managed via Bun workspaces.
 
-The architecture separates deployable applications from shared packages and enforces clear dependency boundaries.
+The architecture strictly separates:
 
-The codebase prioritizes **calm, intentional, human-readable code** with minimal abstraction and minimal surface area.
+- **Deployable applications** (`apps/` & `documentation/`)
+- **UI component libraries** (`components/`)
+- **Reusable platform modules** (`packages/`)
+- **Automation & scripts** (`scripts/`)
+
+The system is designed to be calm, minimal, and intentionally structured.
 
 ## Core Values
 
 - Simplicity over cleverness
-- DX, performance, and readability first
+- Remove accidental complexity first
 - Minimal abstractions, minimal surface area
-- Modern, stable standards only
-- Code should feel calm, intentional, and human
-- Remove accidental complexity before adding features
 - Prefer omission over correction
+- Explicit system boundaries
+- Code must feel intentional and human
+- No architectural drift
 
 ## Defaults
 
 - Runtime & tooling: **Bun**
-- Language: **TypeScript (strict)** — no `any`, no unsafe casts
-- Frontend: **React, TanStack Start, Tailwind CSS, shadcn/ui**
-- State & data: declarative, minimal, explicit
-- Prefer async patterns where reasonable
-- Never produce `.js` or `.mjs`, only `.ts`
-- Dev server must not be started unless explicitly requested
-- Bun documentation lives in `node_modules/bun-types/docs/**/*.mdx`
-
-## Project Structure
-
-### `packages/`
-
-Contains shared workspace packages:
-
-- `convex/`
-- `tsconfig/`
-- other reusable libraries and internal tooling
-
-Packages are **not deployed by default**.
-
-> Exception: `packages/convex` is deployed because it contains Convex backend logic and exports types.
-> Although located in `packages/`, it behaves as a cloud application.
-
-### `apps/`
-
-Contains deployable applications:
-
-- `web`
-- `expo`
-- `tauri`
-- `api`
-- `docs`
-- other services
-
-All submodules inside `apps/` are considered deployable units.
-
-## Monorepo Rules
-
-- Bun workspaces by default
-- Use `workspace:*` for internal dependencies
-- Centralized versions via Bun catalogs:
-  1. Root `package.json` → `workspaces.catalog`
-  2. Packages reference dependencies via `"catalog:"`
-  3. Run `bun install`
-- Small, focused, composable packages
-- Respect existing structure, naming, and formatting
-
-## Architectural Rules
-
-- `apps/` may depend on `packages/`
-- `packages/` must never depend on `apps/`
-- Avoid circular dependencies
-- Shared logic belongs in `packages/`
-- Deployment logic belongs in `apps/`
-- Explicit types at system boundaries
-- Trust TypeScript inference inside modules
-- Avoid `unknown` except at real external boundaries
-
-## TypeScript Rules
-
-- Strict mode must be enabled
-- Avoid `any`
-- Avoid unsafe casts
-- Prefer explicit types at boundaries
-- Rely on inference internally
-- Functional patterns over classes
+- Language: **TypeScript (strict mode)**
+- No `any`
+- No unsafe casts
 - Async-first where reasonable
+- Never emit `.js` or `.mjs`
+- Dev servers must not start unless explicitly requested
+- Prefer functional patterns over classes
+- Trust inference internally, be explicit at boundaries
 
-## Backend
+## Repository Structure
 
-- Backend logic lives in `packages/convex/`
-- Code must follow Convex conventions
-- Shared types should be exported from workspace packages
+### Root Layout
 
-## Imports
+```bash
+apps/
+components/
+documentation/
+packages/
+scripts/
+```
 
-- Use workspace aliases (e.g. `@repo/convex`)
-- Avoid deep relative imports across workspace boundaries
+### apps/
 
-## Code Style & Discipline
+Deployable runtimes.
 
-- Prefer early returns over nested `if`
+Each app is an independent entrypoint.
+
+```bash
+apps/
+api
+cli
+desktop
+mobile
+web
+```
+
+### Rules
+
+- Apps may depend on `packages/` and `components/`
+- Apps must never be imported by `packages/`
+- Apps define runtime, environment wiring, and deployment config
+- Business logic must not live directly inside apps
+
+`apps/api` is a thin wrapper around `@repo/server`.
+
+### packages/
+
+Reusable platform modules.
+
+```bash
+packages/
+auth
+billing
+convex
+db
+email
+env
+kv
+sdk
+server
+storage
+tailwind
+tsconfig
+```
+
+### Responsibilities
+
+- `server/` → backend runtime core (Elysia, ORPC server, middleware)
+- `sdk/` → public client API (transport + contracts only)
+- `db/` → persistence layer (schema, connection, repos)
+- `auth/` → authentication logic
+- `billing/` → subscriptions, plans, financial orchestration
+- `convex/` → Convex cloud backend logic
+- `kv/` → cache or ephemeral storage
+- `storage/` → file/object storage abstraction
+- `env/` → typed environment access
+- `tailwind/` → design preset
+- `tsconfig/` → shared TS config
+
+### Architectural Constraints
+
+- Packages may depend on other packages
+- Packages must never depend on apps
+- `sdk` must not depend on `server`
+- `db` must not depend on `server`
+- `server` may depend on other packages
+- Avoid circular dependencies
+
+### components/
+
+UI component libraries.
+
+```bash
+components/
+web/
+blocks/
+ui/
+mobile/
+blocks/
+ui/
+```
+
+### Rules
+
+- Components must not contain business logic
+- UI must remain presentation-focused
+- Shared visual primitives belong in `ui/`
+- Feature-level components belong in `blocks/`
+- Components may depend on `packages/sdk`
+- Components must not depend on `packages/server`
+
+### scripts/
+
+Automation only.
+
+- Local tooling
+- CI helpers
+- Release scripts
+- Non-runtime utilities
+
+Scripts are not imported by runtime packages.
+
+### Dependency Rules
+
+Allowed:
+
+- `apps/* -> packages/*`
+- `apps/* -> components/*`
+- `server -> db`
+- `server -> auth`
+- `sdk -> env`
+- `components -> sdk`
+
+Forbidden:
+
+- `packages/* -> apps/*`
+- `sdk -> server`
+- `db -> server`
+- Circular imports
+
+### TypeScript Rules
+
+- Strict mode mandatory
+- No `any`
+- No unsafe casts
+- Use `unknown` only at real external boundaries
+- Explicit types at API boundaries
+- Inference inside modules
+- Functional style preferred
+
+### Backend Rules
+
+- Backend logic lives in `packages/server`
+- `apps/api` is runtime entry only
+- Persistence logic lives in `packages/db`
+- Convex logic isolated inside `packages/convex`
+- No database access outside `server` or `convex`
+
+### Import Rules
+
+- Always use workspace aliases (`@repo/*`)
+- No deep relative imports across packages
+- No cross-layer violations
+
+### Code Discipline
+
+- Prefer early returns
 - Avoid unnecessary `else`
-- Avoid `try/catch` in trusted paths
-- Do not add redundant guards or defensive checks
-- Do not introduce unnecessary helpers or abstractions
-- If code requires a paragraph to justify itself — rewrite it
-- Do not reformat unrelated code
-- Do not change behavior or semantics unintentionally
-- Preserve local conventions and implicit assumptions
-- Unusual or complex code is valid if it shows clear human intent
+- Avoid defensive overengineering
+- No redundant abstractions
+- No speculative helpers
+- If logic needs explanation, simplify it
+- Do not modify unrelated code
+- Preserve implicit assumptions
+- Optimize for long-term clarity
 
-## Commenting Rules
+### Comments
 
-- No narrative or tutorial-style comments
-- No comments that restate code behavior
-- Comments allowed only when logic is complex or non-obvious
-- Comments must serve developers or end users
+- No tutorial comments
+- No restating obvious behavior
+- Only explain non-obvious intent
+- Comments must serve developers or users
 
-## Design Principles
+### Design Philosophy
 
-- Favor simplicity over abstraction
-- Prefer composable modules over monolithic utilities
-- Keep functions small and predictable
-- Minimize hidden side effects
-- Optimize for long-term maintainability
-- Improve proactively, not reactively
-- Refactor instead of patching
+- Composition over abstraction
+- Small, focused modules
+- Minimal hidden side effects
+- Stable architecture before feature velocity
+- Refactor instead of patch
+- Clarity is the highest priority
