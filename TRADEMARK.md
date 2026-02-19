@@ -38,7 +38,9 @@ You may use Bleverse Marks only in ways that are:
 
 Goal: **avoid user confusion.**
 
-This policy exists to protect users and the integrity of the project — not to restrict legitimate open-source collaboration.
+This policy exists to protect users and the integrity of the project.
+
+It is not to restrict legitimate open-source collaboration.
 
 ## 4) Allowed uses (no permission required)
 
@@ -97,13 +99,13 @@ If you fork or modify Bleverse and distribute it:
 
 Do **not** name your modified distribution "Bleverse".
 
-Acceptable examples:
+Some acceptable examples:
 
-- "MyProject — a fork of Bleverse (unofficial)"
+- "MyProject is a fork of Bleverse (unofficial)"
 - "Based on Bleverse"
 - "Bleverse-compatible plugin: MyPlugin"
 
-Confusing examples:
+Some confusing examples:
 
 - "Bleverse Pro"
 - "Bleverse Enterprise"

@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for wanting to help. Bleverse is built around clarity, consent, and modularity — contributions should follow the same spirit.
+Thanks for wanting to help. Bleverse is built around clarity, consent, and modularity. Contributions should follow the same spirit.
 
 ## Ways to Contribute
 

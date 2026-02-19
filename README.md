@@ -52,7 +52,7 @@ bun dev:web
 
 ## Architecture
 
-Bleverse is structured as a modular monorepo:
+Bleverse is structured as a modular monorepo.
 
 ```bash
 apps/         → deployable runtimes
@@ -62,7 +62,7 @@ scripts/      → automation
 documentation/
 ```
 
-Core Layers
+Core Layers:
 
 - `packages/server` → backend runtime core
 - `packages/sdk` → public client contract layer
@@ -80,7 +80,7 @@ Applications:
 - `apps/mobile`
 - `apps/desktop`
 
-Clear boundaries are enforced:
+Boundaries:
 
 - Apps depend on packages.
 - SDK never depends on server.

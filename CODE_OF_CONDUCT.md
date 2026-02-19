@@ -13,7 +13,7 @@ Participation in Bleverse spaces means agreeing to follow these guidelines.
 - Being kind, patient, and constructive
 - Respecting different viewpoints and lived experiences
 - Asking questions and giving feedback in good faith
-- Focusing criticism on ideas and work — not on people
+- Focusing criticism on ideas and work, not on people
 - Taking responsibility for your words and actions
 - Caring about accessibility and inclusion
 - Respecting boundaries and consent (social and technical)
@@ -32,7 +32,7 @@ Bleverse values clarity over hostility, and dialogue over ego.
 - Trolling, brigading, or intentional disruption
 - Deliberate misrepresentation of others
 
-Patterns of behavior matter. Repeated disruption, even if subtle, may still violate this Code.
+Patterns of behavior matter. Repeated disruption, even if subtle, may still violate this Code of Conduct.
 
 ## Scope
 
@@ -46,8 +46,8 @@ This policy applies to:
 
 If something violates this Code of Conduct, please report it privately through **one** of the following channels:
 
-- **GitHub Security Advisories** — open a private report via the repository's Security tab
-- **Email** (preferred for now) — contact the project author at [blefnk@gmail.com](mailto:blefnk@gmail.com)
+- **GitHub Security Advisories**: open a private report via the repository's Security tab
+- **Email** (preferred for now): contact the project author at [blefnk@gmail.com](mailto:blefnk@gmail.com)
 
 When reporting, helpful details include:
 
@@ -68,7 +68,7 @@ Project maintainers may take appropriate action to protect the community, includ
 - Temporary suspension from community spaces
 - Permanent bans in serious or repeated cases
 
-Enforcement decisions are made to preserve community well-being — not to win arguments or silence disagreement.
+Enforcement decisions are made to preserve community well-being, not to win arguments or silence disagreement.
 
 We aim for proportional responses and prefer de-escalation whenever possible.
 
@@ -78,7 +78,7 @@ We aim for proportional responses and prefer de-escalation whenever possible.
 - We prioritize safety over optics
 - We prefer clarity over public conflict
 - We aim for fairness, consistency, and transparency when appropriate
-- We recognize that not every conflict is misconduct — but harm must still be addressed
+- We recognize that not every conflict is misconduct, but harm must still be addressed
 
 ## Attribution
 

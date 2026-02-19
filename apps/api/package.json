@@ -1,4 +1,14 @@
 {
-    "name": "@repo/bleverse-api",
-    "version": "0.1.0"
+  "name": "@repo/bleverse-api",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "PORT=${PORT:-3001} bun src/index.ts",
+    "dev": "PORT=${PORT:-3001} bun --hot src/index.ts",
+    "build": "tsdown",
+    "typecheck": "tsgo -b",
+    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+    "start:dist": "bun run dist/index.js"
+  }
 }
