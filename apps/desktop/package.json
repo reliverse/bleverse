@@ -1,4 +1,6 @@
 {
-    "name": "@repo/bleverse-desktop",
-    "version": "0.1.0"
+  "name": "@repo/bleverse-desktop",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true
 }

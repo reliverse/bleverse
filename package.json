@@ -8,8 +8,9 @@
     "dev": "bun dev:web",
     "dev:web": "bun -F=@repo/bleverse-web dev",
     "dev:api": "bun -F=@repo/bleverse-api dev",
-    "fresh": "scripts/clean.sh && bun install",
-    "latest": "bun dler update && bun install"
+    "dev:cli": "bun -F=@repo/bleverse-cli dev",
+    "fresh": "scripts/clean.sh && bun i",
+    "latest": "bun dler update && bun i"
   },
   "workspaces": {
     "packages": [
