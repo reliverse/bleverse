@@ -63,7 +63,7 @@ Examples:
 
 If your change affects behavior, UX, or configuration:
 
-- Update relevant docs in `apps/docs`
+- Update relevant docs in the `documentation/` package
 - Add notes for any new env vars, flags, or breaking changes
 
 ## Pull Requests

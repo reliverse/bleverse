@@ -12,6 +12,7 @@
   "files.associations": {
     "LICENSE": "plaintext",
     "NOTICE": "plaintext",
+    "*.mdx": "markdown",
     "*.json": "json"
   },
   "files.autoSave": "afterDelay",
@@ -25,7 +26,5 @@
     "MD041": false
   },
   "typescript.experimental.useTsgo": true,
-  "typescript.preferences.autoImportSpecifierExcludeRegexes": [
-    "^(node:)?os$"
-  ]
+  "typescript.preferences.autoImportSpecifierExcludeRegexes": ["^(node:)?os$"]
 }
