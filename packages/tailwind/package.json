@@ -2,5 +2,18 @@
     "name": "@repo/tailwind",
     "version": "0.1.0",
     "type": "module",
-    "private": true
-}
+    "private": true,
+    "exports": {
+      "./globals.css": "./globals.css",
+      "./postcss.config.mjs": "./postcss.config.mjs"
+    },
+    "scripts": {},
+    "devDependencies": {
+      "@tailwindcss/postcss": "catalog:",
+      "postcss": "catalog:",
+      "postcss-load-config": "catalog:",
+      "tailwindcss": "catalog:",
+      "tw-animate-css": "catalog:"
+    }
+  }
+  
