@@ -57,7 +57,7 @@ Bleverse is structured as a modular monorepo.
 ```bash
 apps/         → deployable runtimes
 packages/     → reusable platform modules
-components/   → UI libraries (web & mobile)
+components/   → UI libraries (web+mobile)
 scripts/      → automation
 documentation/
 ```
