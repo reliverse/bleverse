@@ -1,6 +1,34 @@
 {
-    "name": "@repo/db",
-    "version": "0.1.0",
-    "type": "module",
-    "private": true
+  "name": "@repo/db",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "db": "drizzle-kit",
+    "db:push": "drizzle-kit push",
+    "db:generate": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio",
+    "db:migrate": "drizzle-kit migrate"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts",
+    "./schema/auth": "./src/schema/auth.ts",
+    "./schema/todo": "./src/schema/todo.ts"
+  },
+  "dependencies": {
+    "@repo/env": "workspace:*",
+    "@neondatabase/serverless": "catalog:",
+    "drizzle-orm": "catalog:",
+    "ws": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
+    "@types/ws": "catalog:",
+    "dotenv": "catalog:",
+    "drizzle-kit": "catalog:",
+    "@typescript/native-preview": "catalog:"
+  }
 }

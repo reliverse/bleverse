@@ -17,7 +17,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@repo/ui/components/dropdown-menu";
+} from "./dropdown-menu";
 
 import { CheckIcon } from "lucide-react";
 import type * as React from "react";

@@ -2,7 +2,7 @@
 
 import { cn } from "../lib/utils";
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
-import { Button } from "@repo/ui/components/button";
+import { Button } from "./button";
 
 import type * as React from "react";
 

@@ -1,5 +1,5 @@
 import { cn } from "../lib/utils";
-import { Button } from "@repo/ui/components/button";
+import { Button } from "./button";
 
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
 import type * as React from "react";

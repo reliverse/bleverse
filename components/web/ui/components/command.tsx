@@ -5,8 +5,8 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@repo/ui/components/dialog";
-import { InputGroup, InputGroupAddon } from "@repo/ui/components/input-group";
+} from "./dialog";
+import { InputGroup, InputGroupAddon } from "./input-group";
 
 import { Command as CommandPrimitive } from "cmdk";
 import { CheckIcon, SearchIcon } from "lucide-react";
