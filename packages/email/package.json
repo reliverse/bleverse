@@ -1,6 +1,28 @@
 {
-    "name": "@repo/email",
-    "version": "0.1.0",
-    "type": "module",
-    "private": true
+  "name": "@repo/email",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "email-dev": "email dev"
+  },
+  "exports": {
+    "./*": "./*.ts"
+  },
+  "dependencies": {
+    "@repo/env": "workspace:*",
+    "@react-email/components": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "resend": "catalog:"
+  },
+  "devDependencies": {
+    "@react-email/preview-server": "catalog:",
+    "@repo/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "react-email": "catalog:",
+    "@typescript/native-preview": "catalog:"
+  }
 }

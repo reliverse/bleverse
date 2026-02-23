@@ -1,6 +1,26 @@
 {
-    "name": "@repo/auth",
-    "version": "0.1.0",
-    "type": "module",
-    "private": true
+  "name": "@repo/auth",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "dependencies": {
+    "@repo/env": "workspace:*",
+    "@better-auth/expo": "catalog:",
+    "@repo/db": "workspace:*",
+    "@polar-sh/better-auth": "catalog:",
+    "@polar-sh/sdk": "catalog:",
+    "better-auth": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "@tanstack/react-start": "catalog:",
+    "@types/bun": "catalog:",
+    "@typescript/native-preview": "catalog:"
+  }
 }

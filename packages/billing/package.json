@@ -1,6 +1,18 @@
 {
-    "name": "@repo/billing",
-    "version": "0.1.0",
-    "type": "module",
-    "private": true
+  "name": "@repo/billing",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./*": "./*.ts"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
+    "@typescript/native-preview": "catalog:"
+  },
+  "dependencies": {
+    "@repo/env": "workspace:*",
+    "@polar-sh/sdk": "catalog:"
+  }
 }
