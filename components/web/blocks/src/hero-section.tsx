@@ -1,9 +1,10 @@
+import { cn } from "@repo/ui-utils/cn";
 import { Button, buttonVariants } from "@repo/ui/button";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
+
 import { ScrollIndicator } from "./scroll-indicator";
 import { TypewriterText } from "./typewriter-text";
-import { cn } from "./lib/utils";
 
 export function HeroSection() {
   return (
@@ -17,19 +18,19 @@ export function HeroSection() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5 text-muted-foreground text-sm backdrop-blur-sm">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5 text-sm text-muted-foreground backdrop-blur-sm">
             <Sparkles className="size-4 text-accent" />
             Building the future of digital products
           </div>
 
-          <h1 className="text-balance font-bold text-4xl tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
             Welcome to{" "}
             <span className="bg-linear-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
               Bleverse
             </span>
           </h1>
 
-          <p className="mt-6 text-lg text-muted-foreground leading-relaxed sm:text-xl">
+          <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
             An innovative tech ecosystem building{" "}
             <TypewriterText
               className="font-semibold text-foreground"
@@ -57,7 +58,7 @@ export function HeroSection() {
                 buttonVariants({
                   size: "lg",
                   variant: "outline",
-                })
+                }),
               )}
               to="/blog/$"
             >
@@ -67,27 +68,27 @@ export function HeroSection() {
         </div>
 
         {/* Stats with animated counters */}
-        <div className="mt-20 grid grid-cols-2 gap-8 border-border/50 border-t pt-10 sm:grid-cols-4">
+        <div className="mt-20 grid grid-cols-2 gap-8 border-t border-border/50 pt-10 sm:grid-cols-4">
           <div className="flex flex-col items-center justify-center">
-            <span className="font-bold text-3xl tabular-nums tracking-tight sm:text-4xl">
+            <span className="text-3xl font-bold tracking-tight tabular-nums sm:text-4xl">
               Projects
             </span>
             <span>25+</span>
           </div>
           <div>
-            <span className="font-bold text-3xl tabular-nums tracking-tight sm:text-4xl">
+            <span className="text-3xl font-bold tracking-tight tabular-nums sm:text-4xl">
               Categories
             </span>
             <span>7</span>
           </div>
           <div>
-            <span className="font-bold text-3xl tabular-nums tracking-tight sm:text-4xl">
+            <span className="text-3xl font-bold tracking-tight tabular-nums sm:text-4xl">
               Technologies
             </span>
             <span>50+</span>
           </div>
           <div>
-            <span className="font-bold text-3xl tabular-nums tracking-tight sm:text-4xl">
+            <span className="text-3xl font-bold tracking-tight tabular-nums sm:text-4xl">
               Made with UX/DX in mind
             </span>
             <span>100%</span>

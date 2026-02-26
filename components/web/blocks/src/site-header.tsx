@@ -6,7 +6,7 @@ import { ExternalLink, Github, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 import { KeyboardHint } from "./keyboard-hint";
-import { cn } from "./lib/utils";
+import { cn } from "@repo/ui-utils/cn";
 import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {

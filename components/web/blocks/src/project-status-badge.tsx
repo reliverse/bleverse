@@ -1,11 +1,6 @@
+import { cn } from "@repo/ui-utils/cn";
 import { Badge } from "@repo/ui/badge";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@repo/ui/tooltip";
-import { cn } from "./lib/utils";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/tooltip";
 
 interface ProjectStatusBadgeProps {
   status: "live" | "beta" | "development" | "concept";
@@ -49,7 +44,7 @@ export function ProjectStatusBadge({
 
   const badge = (
     <Badge
-      className={cn("gap-1.5 text-[10px] uppercase tracking-wider", config.className, className)}
+      className={cn("gap-1.5 text-[10px] tracking-wider uppercase", config.className, className)}
       variant="outline"
     >
       <span className={cn("size-1.5 rounded-full", config.dotColor)} />

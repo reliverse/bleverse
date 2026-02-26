@@ -1,6 +1,6 @@
+import { cn } from "@repo/ui-utils/cn";
 import { useLocation } from "@tanstack/react-router";
 import { type ReactNode, useEffect, useState } from "react";
-import { cn } from "./lib/utils";
 
 interface PageTransitionProps {
   children: ReactNode;
@@ -26,7 +26,7 @@ export function PageTransition({ children }: PageTransitionProps) {
     <div
       className={cn(
         "transition-all duration-300",
-        isTransitioning ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100"
+        isTransitioning ? "translate-y-2 opacity-0" : "translate-y-0 opacity-100",
       )}
     >
       {displayChildren}

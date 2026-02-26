@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@repo/ui-utils/cn";
 import type React from "react";
 import { type ReactNode, useRef } from "react";
-import { cn } from "./lib/utils";
 
 interface TiltCardProps {
   children: ReactNode;

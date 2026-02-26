@@ -1,9 +1,9 @@
 "use client";
 
+import { cn } from "@repo/ui-utils/cn";
 import { Button } from "@repo/ui/button";
 import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cn } from "./lib/utils";
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,7 +29,7 @@ export function BackToTop() {
       aria-label="Back to top"
       className={cn(
         "fixed right-6 bottom-6 z-50 size-10 rounded-full shadow-lg transition-all duration-300",
-        isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+        isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0",
       )}
       onClick={scrollToTop}
       size="icon"

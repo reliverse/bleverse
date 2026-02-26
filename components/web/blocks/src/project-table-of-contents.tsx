@@ -1,7 +1,7 @@
 "use client";
 
+import { cn } from "@repo/ui-utils/cn";
 import { useEffect, useState } from "react";
-import { cn } from "./lib/utils";
 
 interface TOCItem {
   id: string;
@@ -55,7 +55,7 @@ export function ProjectTableOfContents() {
       },
       {
         rootMargin: "-100px 0px -80% 0px",
-      }
+      },
     );
 
     headings.forEach((heading) => {
@@ -70,7 +70,7 @@ export function ProjectTableOfContents() {
 
   return (
     <nav className="sticky top-24 hidden xl:block">
-      <h4 className="mb-4 font-semibold text-sm">On This Page</h4>
+      <h4 className="mb-4 text-sm font-semibold">On This Page</h4>
       <ul className="space-y-2 text-sm">
         {headings.map((heading) => (
           <li
@@ -80,7 +80,7 @@ export function ProjectTableOfContents() {
             <a
               className={cn(
                 "block transition-colors hover:text-foreground",
-                activeId === heading.id ? "font-medium text-accent" : "text-muted-foreground"
+                activeId === heading.id ? "font-medium text-accent" : "text-muted-foreground",
               )}
               href={`#${heading.id}`}
             >

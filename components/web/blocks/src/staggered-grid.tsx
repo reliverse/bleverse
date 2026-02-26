@@ -1,7 +1,7 @@
 "use client";
 
+import { cn } from "@repo/ui-utils/cn";
 import { type ReactNode, useEffect, useRef, useState } from "react";
-import { cn } from "./lib/utils";
 
 interface StaggeredGridProps {
   children: ReactNode[];
@@ -28,7 +28,7 @@ export function StaggeredGrid({ children, className, staggerDelay = 50 }: Stagge
       {
         threshold: 0.1,
         rootMargin: "50px",
-      }
+      },
     );
 
     const items = containerRef.current?.querySelectorAll("[data-index]");
@@ -43,7 +43,7 @@ export function StaggeredGrid({ children, className, staggerDelay = 50 }: Stagge
         <div
           className={cn(
             "transition-all duration-500 ease-out",
-            visibleItems.has(index) ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            visibleItems.has(index) ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
           )}
           data-index={index}
           key={index}

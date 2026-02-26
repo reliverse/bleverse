@@ -1,8 +1,7 @@
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
+import { cn } from "@repo/ui-utils/cn";
 import { cva } from "class-variance-authority";
 import { ChevronDownIcon } from "lucide-react";
-
-import { cn } from "./lib/utils";
 
 function NavigationMenu({ className, children, ...props }: NavigationMenuPrimitive.Root.Props) {
   return (

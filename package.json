@@ -6,6 +6,7 @@
     "packages": [
       "apps/*",
       "components/mobile/*",
+      "components/shared",
       "components/web/*",
       "documentation",
       "packages/*",

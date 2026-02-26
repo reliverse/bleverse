@@ -1,19 +1,14 @@
 "use client";
 
+import { cn } from "@repo/ui-utils/cn";
 import { Badge } from "@repo/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/card";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Calendar, ExternalLink } from "lucide-react";
 import type React from "react";
-import { TiltCard } from "./tilt-card";
+
 import type { Project } from "./lib/projects";
-import { cn } from "./lib/utils";
+import { TiltCard } from "./tilt-card";
 
 interface PortfolioCardProps {
   project: Project;
@@ -56,13 +51,13 @@ export function PortfolioCard({ project, variant = "grid" }: PortfolioCardProps)
                   <h3 className="font-semibold transition-colors group-hover:text-accent">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm">{project.subtitle}</p>
+                  <p className="text-sm text-muted-foreground">{project.subtitle}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <Badge
                     className={cn(
-                      "shrink-0 text-[10px] uppercase tracking-wider",
-                      statusStyles[project.status]
+                      "shrink-0 text-[10px] tracking-wider uppercase",
+                      statusStyles[project.status],
                     )}
                     variant="outline"
                   >
@@ -71,11 +66,11 @@ export function PortfolioCard({ project, variant = "grid" }: PortfolioCardProps)
                   <ArrowUpRight className="size-4 opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
               </div>
-              <p className="line-clamp-1 text-muted-foreground text-sm">
+              <p className="line-clamp-1 text-sm text-muted-foreground">
                 {project.shortDescription}
               </p>
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-1 text-muted-foreground text-xs">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <Calendar className="size-3" />
                   {project.lastUpdate}
                 </div>
@@ -115,7 +110,7 @@ export function PortfolioCard({ project, variant = "grid" }: PortfolioCardProps)
             {project.externalLink && (
               <button
                 aria-label={`Visit ${project.title} (opens in new tab)`}
-                className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 backdrop-blur-sm transition-all hover:bg-background focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring group-hover:opacity-100"
+                className="absolute top-3 right-3 flex size-8 items-center justify-center rounded-full bg-background/90 text-foreground opacity-0 backdrop-blur-sm transition-all group-hover:opacity-100 hover:bg-background focus:opacity-100 focus:ring-2 focus:ring-ring focus:outline-none"
                 onClick={handleExternalLinkClick}
                 type="button"
               >
@@ -125,11 +120,11 @@ export function PortfolioCard({ project, variant = "grid" }: PortfolioCardProps)
           </div>
           <CardHeader className="gap-2 pb-3">
             <div className="flex items-start justify-between gap-2">
-              <CardTitle className="line-clamp-1 font-semibold text-lg tracking-tight transition-colors group-hover:text-accent">
+              <CardTitle className="line-clamp-1 text-lg font-semibold tracking-tight transition-colors group-hover:text-accent">
                 {project.title}
               </CardTitle>
               <Badge
-                className={`shrink-0 text-[10px] uppercase tracking-wider ${statusStyles[project.status]}`}
+                className={`shrink-0 text-[10px] tracking-wider uppercase ${statusStyles[project.status]}`}
                 variant="outline"
               >
                 {project.status}
@@ -138,13 +133,13 @@ export function PortfolioCard({ project, variant = "grid" }: PortfolioCardProps)
             <CardDescription className="line-clamp-1 text-sm">{project.subtitle}</CardDescription>
           </CardHeader>
           <CardContent className="pt-0">
-            <p className="mb-4 line-clamp-2 text-muted-foreground text-sm">
+            <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">
               {project.shortDescription}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {project.tags.slice(0, 3).map((tag) => (
                 <Badge
-                  className="bg-secondary/50 px-2 py-0 font-medium text-[10px]"
+                  className="bg-secondary/50 px-2 py-0 text-[10px] font-medium"
                   key={tag}
                   variant="secondary"
                 >
