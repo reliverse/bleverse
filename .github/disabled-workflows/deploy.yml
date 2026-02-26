@@ -1,0 +1,84 @@
+name: Deploy Bleverse Monorepo
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: bleverse-prod-deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: >-
+      ${{
+        github.event_name == 'workflow_dispatch' ||
+        (
+          !contains(github.event.head_commit.message, '[skip deploy]') &&
+          !contains(github.event.head_commit.message, '[skip ci]')
+        )
+      }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout (metadata only)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Start ssh-agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+          log-public-key: false
+
+      - name: Configure known_hosts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+      - name: Deploy over SSH (native OpenSSH)
+        shell: bash
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_APP_ID: ${{ vars.DEPLOY_APP_ID }}
+        run: |
+          set -euo pipefail
+
+          REMOTE_APP_ID="${DEPLOY_APP_ID:-bleverse-web}"
+
+          ssh \
+            -p "${SSH_PORT}" \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o LogLevel=ERROR \
+            -o ConnectTimeout=20 \
+            -o ServerAliveInterval=15 \
+            -o ServerAliveCountMax=3 \
+            "${SSH_USER}@${SSH_HOST}" \
+            DEPLOY_APP_ID="${REMOTE_APP_ID}" \
+            'bash -seuo pipefail' <<'REMOTE'
+              APP_ID="${DEPLOY_APP_ID:-bleverse-web}"
+              DEPLOY_BIN="$HOME/.local/bin/bleverse-deploy-app"
+
+              if [ ! -x "$DEPLOY_BIN" ]; then
+                echo "❌ Missing executable deploy script: $DEPLOY_BIN"
+                exit 1
+              fi
+
+              "$DEPLOY_BIN" "$APP_ID"
+
+              echo "✅ Deploy finished successfully"
+          REMOTE

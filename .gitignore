@@ -33,3 +33,6 @@ Thumbs.db
 # Monorepo
 .vercel/
 .turbo/
+
+# Temporary
+temp

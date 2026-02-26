@@ -40,5 +40,5 @@ license: MIT
 
 ## Output
 
-- Finish with a 1–3 sentence summary describing only what was removed.
+- Finish with a 1-3 sentence summary describing only what was removed.
 - Output nothing else.

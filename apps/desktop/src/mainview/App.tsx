@@ -20,7 +20,7 @@ function App() {
 					<p className="mb-4 text-gray-600">
 						Click the button below to test React state. With HMR enabled, you
 						can edit this component and see changes instantly without losing
-						state.
+						state! :)
 					</p>
 					<div className="flex items-center gap-4">
 						<button

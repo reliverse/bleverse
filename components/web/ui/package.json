@@ -8,10 +8,8 @@
   },
   "exports": {
     ".": "./index.js",
-    "./*": "./*.ts",
-    "./styles/base.css": "./styles/base.css",
-    "./lib/theme-provider": "./lib/theme-provider.tsx",
-    "./components/*": "./components/*.tsx"
+    "./*": "./src/*.tsx",
+    "./lib/utils": "./src/lib/utils.ts"
   },
   "dependencies": {
     "@base-ui/react": "catalog:",

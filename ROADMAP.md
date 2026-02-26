@@ -249,3 +249,121 @@ Design preset.
 - [ ] Release scripts
 - [ ] Migration scripts
 - [ ] Backup scripts
+
+## Complete Initial Issues (before 0.1.0 release)
+
+- [x] push initial commit
+- [x] init @repo/bleverse-monorepo
+- [x] init @repo/bleverse-web
+- [x] init @repo/bleverse-api
+- [x] init @repo/bleverse-cli
+- [x] init @repo/bleverse-docs
+- [x] init @repo/bleverse-mobile
+- [x] init @repo/bleverse-desktop
+- [ ] init @repo/ui @repo/blocks (web)
+- [ ] init @repo/ui @repo/blocks (mobile)
+- [ ] init: tailwind, tsconfig, @bleverse/sdk
+- [ ] init packages: server, env, kv, db, convex
+- [ ] init packages: auth, storage, billing, email
+- [ ] add .vscode: settings.json and extensions.json
+- [ ] add .agents/skills: standards and remove-slop
+- [ ] add: turbo.json, biome.json, scripts/clean.sh
+- [ ] implement .github/workflows/deploy.yml
+- [ ] add files: README.md, LICENSE, NOTICE
+- [ ] add .agents/skills: reliverse and frontend
+- [ ] add: CONTRIBUTING.md, CHANGELOG.md
+- [ ] add: CODE_OF_CONDUCT.md, SECURITY.md
+- [ ] add: .github/FUNDING.yml, ROADMAP.md
+
+## Polish Markdown Files (before 0.2.0 release)
+
+- [ ] .agents/README.md
+- [ ] .agents/skills/code-standards/SKILL.md
+- [ ] .agents/skills/electrobun-apps/SKILL.md
+- [ ] .agents/skills/frontend-design/SKILL.md
+- [ ] .agents/skills/reliverse-tools/SKILL.md
+- [ ] .agents/skills/remove-slop/SKILL.md
+- [ ] apps/desktop/README.md
+- [ ] apps/web/README.md
+- [ ] apps/web/content/blog/architects.md
+- [ ] apps/web/content/blog/index.mdx
+- [ ] apps/web/content/blog/soul.md
+- [ ] CHANGELOG.md
+- [ ] CODE_OF_CONDUCT.md
+- [ ] CONTRIBUTING.md
+- [ ] documentation/README.md
+- [ ] documentation/content/docs/core/env.md
+- [ ] documentation/content/docs/core/features.mdx
+- [ ] documentation/content/docs/core/getting-started.mdx
+- [ ] documentation/content/docs/core/index.mdx
+- [ ] documentation/content/docs/core/resources.md
+- [ ] documentation/content/docs/core/standards.md
+- [ ] documentation/content/docs/index.mdx
+- [ ] documentation/content/docs/philosophy/accessibility.mdx
+- [ ] documentation/content/docs/philosophy/advertising.md
+- [ ] documentation/content/docs/philosophy/no-dark-patterns.md
+- [ ] documentation/content/docs/philosophy/privacy.mdx
+- [ ] documentation/content/docs/philosophy/reliverse.md
+- [ ] packages/convex/AGENTS.md
+- [ ] packages/convex/ARCHITECTURE.md
+- [ ] README.md
+- [ ] ROADMAP.md
+- [ ] SECURITY.md
+- [ ] TRADEMARK.md
+
+## Polish JSON Files (before 0.3.0 release)
+
+- [ ] .oxfmtrc.json
+- [ ] .oxlintrc.json
+- [ ] .vscode/extensions.json
+- [ ] .vscode/settings.json
+- [ ] apps/api/package.json
+- [ ] apps/api/tsconfig.json
+- [ ] apps/cli/package.json
+- [ ] apps/desktop/package.json
+- [ ] apps/desktop/tsconfig.json
+- [ ] apps/mobile/eas.json
+- [ ] apps/mobile/package.json
+- [ ] apps/mobile/tsconfig.json
+- [ ] apps/web/components.json
+- [ ] apps/web/package.json
+- [ ] apps/web/tsconfig.json
+- [ ] biome.json
+- [ ] components/mobile/blocks/package.json
+- [ ] components/mobile/ui/package.json
+- [ ] components/web/blocks/components.json
+- [ ] components/web/blocks/package.json
+- [ ] components/web/blocks/tsconfig.json
+- [ ] components/web/ui/components.json
+- [ ] components/web/ui/package.json
+- [ ] components/web/ui/tsconfig.json
+- [ ] documentation/package.json
+- [ ] documentation/tsconfig.json
+- [ ] package.json
+- [ ] packages/auth/package.json
+- [ ] packages/auth/tsconfig.json
+- [ ] packages/billing/package.json
+- [ ] packages/billing/tsconfig.json
+- [ ] packages/convex/convex.json
+- [ ] packages/convex/package.json
+- [ ] packages/convex/tsconfig.json
+- [ ] packages/db/package.json
+- [ ] packages/db/tsconfig.json
+- [ ] packages/email/package.json
+- [ ] packages/email/tsconfig.json
+- [ ] packages/env/package.json
+- [ ] packages/env/tsconfig.json
+- [ ] packages/kv/package.json
+- [ ] packages/kv/tsconfig.json
+- [ ] packages/sdk/package.json
+- [ ] packages/server/package.json
+- [ ] packages/server/tsconfig.json
+- [ ] packages/storage/package.json
+- [ ] packages/storage/tsconfig.json
+- [ ] packages/tailwind/package.json
+- [ ] packages/tsconfig/package.json
+- [ ] packages/tsconfig/ts-files-only.json
+- [ ] packages/tsconfig/tsx-support.json
+- [ ] scripts/package.json
+- [ ] scripts/tsconfig.json
+- [ ] turbo.json

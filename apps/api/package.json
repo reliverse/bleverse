@@ -10,5 +10,28 @@
     "typecheck": "tsgo -b",
     "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
     "start:dist": "bun run dist/index.js"
+  },
+  "dependencies": {
+    "@repo/ui": "workspace:*",
+    "@ai-sdk/devtools": "catalog:",
+    "@ai-sdk/google": "catalog:",
+    "@repo/server": "workspace:*",
+    "@repo/auth": "workspace:*",
+    "@repo/db": "workspace:*",
+    "@repo/env": "workspace:*",
+    "@elysiajs/cors": "catalog:",
+    "@orpc/openapi": "catalog:",
+    "@orpc/server": "catalog:",
+    "@orpc/zod": "catalog:",
+    "ai": "catalog:",
+    "better-auth": "catalog:",
+    "elysia": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "@types/bun": "catalog:",
+    "tsdown": "catalog:",
+    "@typescript/native-preview": "catalog:"
   }
 }

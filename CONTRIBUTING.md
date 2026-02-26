@@ -1,94 +1,197 @@
-# Contributing
+# Contributing to Bleverse
 
-Thanks for wanting to help. Bleverse is built around clarity, consent, and modularity. Contributions should follow the same spirit.
+Bleverse is a modular ecosystem built with clarity, consent, and long-term sustainability in mind. It's evolving, so every thoughtful contribution helps move it forward. To contribute, you don't need a technical background here. If you care about the ideas behind Bleverse, you already belong here. Thank you for being here.
 
 ## Ways to Contribute
 
-- Report bugs and request features via issues
-- Improve docs
-- Submit pull requests
-- Share feedback on UX, accessibility, and architecture
-- Support the project financially via [GitHub Sponsors](https://github.com/sponsors/blefnk)
+There are many ways to participate. Code is just one of them. You can:
+
+- Support the project via [GitHub Sponsors](https://github.com/sponsors/blefnk)
+- Report bugs or suggest improvements
+- Improve documentation or tests
+- Improve accessibility or UX/UI
+- Refactor for clarity
+- Review pull requests
+
+You can also:
+
+- Write blog posts
+- Create videos or tutorials
+- Share thoughtful criticism
+- Talk about Bleverse on social platforms
+- Start discussions about architecture or philosophy
+
+Clear thinking and honest feedback are always welcome.
+
+## The Spirit of the Project
+
+Bleverse is built around a few guiding values:
+
+- Calm by default
+- Explicit over implicit
+- Stable at the boundaries
+- Respectful of user sovereignty
+- Modular over tightly coupled systems
+
+They help us make consistent decisions as the platform evolves.
+
+If something feels unclear, starting a discussion is always welcome.
 
 ## Before You Start
 
+A few gentle guidelines:
+
 - Be kind and constructive.
-- Prefer small, focused changes over large rewrites.
-- If you're planning a bigger change, open an issue first to align on direction.
+- Small, focused changes are easier to review.
+- If you're planning something large or structural, opening an issue first can help align expectations.
+
+There's no rush. Thoughtful progress is better than fast progress.
+
+## About Larger Changes
+
+Some parts of Bleverse influence the platform at a structural level, such as:
+
+- Core architecture
+- Authentication
+- SDK contracts
+- Entitlements
+- Data models
+- Public APIs
+- Billing
+
+Changes in these areas can ripple across the system. Starting a conversation early helps us explore implications together and keep the ecosystem coherent.
+
+This isn't about gatekeeping. It's about shared responsibility for long-term stability.
+
+## Project Status
+
+> **v0.x**: Bleverse is evolving.
+
+Some APIs and internal structures are still stabilizing as the platform matures.
+
+Breaking changes are documented in `CHANGELOG.md`.
 
 ## Development Setup
 
 1. Fork this repo
-2. Clone your fork
-3. Install deps
-4. Run dev server
+2. **Clone your fork**
+3. Install dependencies
+4. Run the appropriate dev command
 
 ```bash
-git clone https://github.com/your-fork-username/bleverse.git
+git clone https://github.com/your-username/bleverse.git
 cd bleverse
 bun install
 bun dev:web
 ```
 
-If you're unsure what to run for a specific package/app, check the nearest `package.json` scripts.
+Exact commands may vary by workspace. To learn more, please check the nearest `package.json` or documentation.
 
-Note that our codebase uses [Bun](https://bun.com) as the package manager, a runtime, and a testing framework.
+**Some of the tools Bleverse uses**:
 
-> **Project status**: v0.x. Work in progress. APIs and features may change.
-
-## Code Style
-
-- Follow the existing patterns in the codebase.
-- Keep changes readable and modular.
-- Prefer explicit behavior over "magic".
-- Avoid unrelated refactors in the same PR.
-
-## Commits
-
-Prefer clear, descriptive commit messages. Conventional Commits are welcome if the repo already uses them often.
-
-Examples:
-
-- `feat: add profile privacy toggle`
-- `fix: prevent feed flash on refresh`
-- `docs: clarify local setup`
-
-## Tests
-
-- Add or update tests when behavior changes.
-- If there are no tests yet for an area, add the simplest practical coverage.
-- Make sure the project builds and runs locally before opening a PR.
+- Bun (runtime, package manager, test runner)
+- TypeScript (strict mode)
 
 ## Documentation
 
-If your change affects behavior, UX, or configuration:
+Documentation lives at [https://docs.bleverse.com](https://docs.bleverse.com)
 
-- Update relevant docs in the `documentation/` package
-- Add notes for any new env vars, flags, or breaking changes
+If your change affects behavior, configuration, UX, or public APIs, please update the relevant documentation so others can understand and build on your work.
+
+## Architecture Overview
+
+Bleverse is organized as a modular monorepo:
+
+```bash
+apps/          → deployable runtimes
+documentation/ → deployable documentation
+packages/      → reusable platform modules
+scripts/       → automation tools
+components/    → UI libraries
+```
+
+We try to keep boundaries clear so the system remains maintainable as it grows.
+
+General direction:
+
+- Apps depend on packages.
+- Packages don't depend on apps.
+- Public APIs stay typed and documented.
+- SDK remains independent from server internals.
+
+These boundaries exist to reduce future friction.
+
+## Code Style
+
+There's no obsession with cleverness.
+
+- Avoid unnecessary abstractions.
+- Add dependencies thoughtfully.
+- Prefer clarity over tricks.
+- Keep functions focused.
+
+If something feels uncertain, starting a discussion is completely fine.
+
+## Testing
+
+Run all tests:
+
+```bash
+bun test
+```
+
+Or filter by workspace:
+
+```bash
+bun test --filter packages/sdk
+```
+
+Before opening a PR:
+
+- Ensure the project builds
+- Ensure TypeScript compiles cleanly
+- Ensure tests pass (if applicable)
 
 ## Pull Requests
 
-When opening a PR, please include:
+When opening a PR, consider including:
 
-- What you changed and why
-- Screenshots / recordings for UI changes (when applicable)
-- Any follow-ups or known limitations
+- What changed
+- Why it changed
+- Screenshots (for UI updates)
+- Notes about breaking changes
 
-PRs should be focused and easy to review. If you have multiple unrelated changes, split them into separate PRs.
+Well-scoped PRs are easier to understand and collaborate on.
+
+## If Something Is Declined
+
+Not every contribution will be merged, and that's okay.
+
+Sometimes changes may conflict with long-term architectural direction or introduce complexity that isn't aligned with current goals.
+
+If something doesn't move forward, it's never personal. Open source works best when clarity and respect are maintained on both sides.
 
 ## Reporting Issues
 
-When opening an issue, include:
+When reporting an issue, the more context you can share, the better. Helpful details may include:
 
 - Steps to reproduce
+- Logs or screenshots
+- Your environment details
 - Expected vs actual behavior
-- Logs or screenshots if relevant
-- Environment details (OS, browser, version info)
 
-## Security Issues
+Clear reports make it easier for everyone to understand what's happening and work toward a fix.
 
-Please **do not** report vulnerabilities publicly. See [SECURITY.md](SECURITY.md).
+## Security
 
-## License
+If you discover a security vulnerability, please do not disclose it publicly.
 
-By contributing, you agree that your contributions will be licensed under the project's license(s) (see `LICENSE` and package-level licenses where applicable).
+Instead, follow the responsible disclosure process outlined in [SECURITY.md](SECURITY.md) file.
+
+## Final Note
+
+Bleverse is evolving, intentionally and carefully.
+
+The priority is long-term stability over rapid growth.
+
+If you're here, you're part of that effort. And that matters.

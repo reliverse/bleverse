@@ -4,8 +4,8 @@
     "type": "module",
     "private": true,
     "exports": {
-      "./globals.css": "./globals.css",
-      "./postcss.config.mjs": "./postcss.config.mjs"
+      "./postcss.config.mjs": "./postcss.config.mjs",
+      "./styles/base.css": "./styles/base.css"
     },
     "scripts": {},
     "devDependencies": {
