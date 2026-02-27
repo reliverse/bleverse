@@ -44,6 +44,6 @@ Documentation lives on [https://docs.bleverse.com](https://docs.bleverse.com)
 
 ## License
 
-Copyright © 2026-present Nazarii Korniienko
+Copyright (c) 2026-present Nazarii Korniienko
 
 Licensed under the [Apache License 2.0](LICENSE). Some apps or packages may define additional licenses. See individual `LICENSE` files for details.

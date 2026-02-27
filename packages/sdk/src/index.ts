@@ -72,7 +72,11 @@ export type BleverseApiClient = {
 export function createBleverseApiClient(options: BleverseApiClientOptions = {}): BleverseApiClient {
   const baseUrl = (options.baseUrl ?? "https://api.bleverse.com").replace(/\/$/, "");
 
-  async function request(method: "GET" | "POST", pathname: string, body?: unknown): Promise<unknown> {
+  async function request(
+    method: "GET" | "POST",
+    pathname: string,
+    body?: unknown,
+  ): Promise<unknown> {
     const url = `${baseUrl}${pathname.startsWith("/") ? pathname : `/${pathname}`}`;
     const headers: Record<string, string> = { "content-type": "application/json" };
     if (options.token) headers.authorization = `Bearer ${options.token}`;

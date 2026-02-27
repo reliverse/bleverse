@@ -9,9 +9,7 @@ const footerLinks = {
     { label: "RSE CLI", href: "https://docs.reliverse.org/libraries/rse" },
     { label: "Dler", href: "https://docs.reliverse.org/libraries/dler" },
   ],
-  Community: [
-    { label: "Discord", href: "#" },
-  ],
+  Community: [{ label: "Discord", href: "#" }],
   Resources: [
     { label: "Blog", href: "/blog" },
     { label: "Roadmap", href: "/roadmap" },
@@ -28,22 +26,22 @@ const footerLinks = {
 
 export function SiteFooter() {
   return (
-    <footer className="border-border/40 border-t bg-background">
+    <footer className="border-t border-border/40 bg-background">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link className="flex items-center gap-2" to="/">
               <div className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background">
-                <span className="font-bold text-sm">B</span>
+                <span className="text-sm font-bold">B</span>
               </div>
-              <span className="font-semibold text-lg tracking-tight">Bleverse</span>
+              <span className="text-lg font-semibold tracking-tight">Bleverse</span>
             </Link>
-            <p className="mt-4 max-w-xs text-muted-foreground text-sm">
+            <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               Building the future of digital products. An innovative tech ecosystem spanning gaming,
               social, commerce, and developer tools.
             </p>
             <a
-              className="mt-4 inline-flex items-center gap-2 text-muted-foreground text-sm transition-colors hover:text-foreground"
+              className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
               href="/feed.xml"
               rel="noopener noreferrer"
               target="_blank"
@@ -55,13 +53,13 @@ export function SiteFooter() {
 
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="mb-3 font-semibold text-foreground text-sm">{category}</h3>
+              <h3 className="mb-3 text-sm font-semibold text-foreground">{category}</h3>
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link.label}>
                     {link.href.startsWith("http") || link.href.startsWith("#") ? (
                       <a
-                        className="text-muted-foreground text-sm transition-colors hover:text-foreground"
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                         href={link.href}
                         {...(link.href.startsWith("http") && {
                           target: "_blank",
@@ -72,7 +70,7 @@ export function SiteFooter() {
                       </a>
                     ) : (
                       <Link
-                        className="text-muted-foreground text-sm transition-colors hover:text-foreground"
+                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                         to={link.href}
                       >
                         {link.label}
@@ -88,12 +86,12 @@ export function SiteFooter() {
         <Separator className="my-8" />
 
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Bleverse. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a
-              className="text-muted-foreground text-sm transition-colors hover:text-foreground"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               href="https://github.com/blefnk"
               rel="noopener noreferrer"
               target="_blank"
@@ -101,7 +99,7 @@ export function SiteFooter() {
               GitHub
             </a>
             <a
-              className="text-muted-foreground text-sm transition-colors hover:text-foreground"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               href="https://twitter.com/blefnk"
               rel="noopener noreferrer"
               target="_blank"
@@ -109,7 +107,7 @@ export function SiteFooter() {
               Twitter
             </a>
             <a
-              className="text-muted-foreground text-sm transition-colors hover:text-foreground"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               href="https://linkedin.com/company/bleverse"
               rel="noopener noreferrer"
               target="_blank"

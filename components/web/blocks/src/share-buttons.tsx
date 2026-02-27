@@ -32,14 +32,14 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
   const shareOnTwitter = () => {
     window.open(
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(shareUrl)}`,
-      "_blank"
+      "_blank",
     );
   };
 
   const shareOnLinkedIn = () => {
     window.open(
       `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
-      "_blank"
+      "_blank",
     );
   };
 

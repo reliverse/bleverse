@@ -11,7 +11,7 @@ export function KeyboardHint() {
   }, []);
 
   return (
-    <div className="hidden items-center gap-1 text-muted-foreground text-xs sm:flex">
+    <div className="hidden items-center gap-1 text-xs text-muted-foreground sm:flex">
       Press <Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd> <Kbd>K</Kbd> to search
     </div>
   );

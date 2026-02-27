@@ -1,8 +1,8 @@
 {
   "name": "@repo/bleverse-api",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "PORT=${PORT:-3001} bun src/index.ts",
     "dev": "PORT=${PORT:-3001} bun --hot src/index.ts",
@@ -12,17 +12,17 @@
     "start:dist": "bun run dist/index.js"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
     "@ai-sdk/devtools": "catalog:",
     "@ai-sdk/google": "catalog:",
-    "@repo/server": "workspace:*",
-    "@repo/auth": "workspace:*",
-    "@repo/db": "workspace:*",
-    "@repo/env": "workspace:*",
     "@elysiajs/cors": "catalog:",
     "@orpc/openapi": "catalog:",
     "@orpc/server": "catalog:",
     "@orpc/zod": "catalog:",
+    "@repo/auth": "workspace:*",
+    "@repo/db": "workspace:*",
+    "@repo/env": "workspace:*",
+    "@repo/server": "workspace:*",
+    "@repo/ui": "workspace:*",
     "ai": "catalog:",
     "better-auth": "catalog:",
     "elysia": "catalog:",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@repo/tsconfig": "workspace:*",
     "@types/bun": "catalog:",
-    "tsdown": "catalog:",
-    "@typescript/native-preview": "catalog:"
+    "@typescript/native-preview": "catalog:",
+    "tsdown": "catalog:"
   }
 }

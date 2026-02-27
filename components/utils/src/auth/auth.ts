@@ -3,6 +3,7 @@ import { createServerOnlyFn } from "@tanstack/react-start";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { betterAuth } from "better-auth/minimal";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
+
 import { db } from "../../lib/db";
 
 const getAuthConfig = createServerOnlyFn(() =>
@@ -47,7 +48,7 @@ const getAuthConfig = createServerOnlyFn(() =>
       // https://www.better-auth.com/docs/adapters/drizzle#joins-experimental
       joins: true,
     },
-  })
+  }),
 );
 
 export const auth = getAuthConfig();

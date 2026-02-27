@@ -43,7 +43,7 @@ export function TypewriterText({
           }
         }
       },
-      isDeleting ? deletingSpeed : typingSpeed
+      isDeleting ? deletingSpeed : typingSpeed,
     );
 
     return () => clearTimeout(timeout);

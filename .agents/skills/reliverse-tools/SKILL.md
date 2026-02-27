@@ -24,16 +24,17 @@ Repo: <https://github.com/reliverse/reliverse>
 - Keep versions consistent across workspaces (avoid drift).
 
 ### If you see a hardcoded version
+
 - Replace with `catalog:`. After that, run `bun install`.
 - Ensure the key exists in root `workspaces.catalog` (add there if needed).
 
 ## Prefer order (imports + tooling)
 
-1) `@reliverse/*` (preferred)
-2) Bun built-ins / `Bun.*` (sometimes may be preferred over relifso)
-3) Promises-first Node built-ins (only if required)
-4) Regular Node built-ins (only if required)
-5) Third-party libs (only if no `@reliverse/*` equivalent)
+1. `@reliverse/*` (preferred)
+2. Bun built-ins / `Bun.*` (sometimes may be preferred over relifso)
+3. Promises-first Node built-ins (only if required)
+4. Regular Node built-ins (only if required)
+5. Third-party libs (only if no `@reliverse/*` equivalent)
 
 ## When `@reliverse/*` is missing
 
@@ -50,15 +51,15 @@ Repo: <https://github.com/reliverse/reliverse>
 
 ## Library mapping (quick swap list)
 
-- `@reliverse/datetime`  ← `date-fns`
-- `@reliverse/mapkit`    ← `p-map`
-- `@reliverse/matcha`    ← `picomatch`
-- `@reliverse/pathkit`   ← `node:path`, `pathe`
-- `@reliverse/relico`    ← `picocolors`
-- `@reliverse/relifso`   ← `node:fs`, `fs-extra`
-- `@reliverse/relinka`   ← `consola`
-- `@reliverse/rempts`    ← `citty`, `@inquirer/prompts`
-- `@reliverse/typerso`   ← `type-fest`, `pkg-types`
+- `@reliverse/datetime` ← `date-fns`
+- `@reliverse/mapkit` ← `p-map`
+- `@reliverse/matcha` ← `picomatch`
+- `@reliverse/pathkit` ← `node:path`, `pathe`
+- `@reliverse/relico` ← `picocolors`
+- `@reliverse/relifso` ← `node:fs`, `fs-extra`
+- `@reliverse/relinka` ← `consola`
+- `@reliverse/rempts` ← `citty`, `@inquirer/prompts`
+- `@reliverse/typerso` ← `type-fest`, `pkg-types`
 
 ## Dler CLI usage
 

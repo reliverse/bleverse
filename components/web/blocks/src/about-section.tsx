@@ -33,7 +33,7 @@ export function AboutSection() {
     <section className="bg-muted/30 py-20 sm:py-32" id="about">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-bold text-3xl tracking-tight sm:text-4xl">About Bleverse</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About Bleverse</h2>
           <p className="mt-4 text-lg text-muted-foreground">
             We're on a mission to build exceptional digital products that make a difference. Our
             ecosystem spans multiple domains, all connected by our commitment to quality and
@@ -49,7 +49,7 @@ export function AboutSection() {
                   <feature.icon className="size-6 text-accent" />
                 </div>
                 <h3 className="mb-2 font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm">{feature.description}</p>
+                <p className="text-sm text-muted-foreground">{feature.description}</p>
               </CardContent>
             </Card>
           ))}

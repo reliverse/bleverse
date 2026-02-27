@@ -1,5 +1,6 @@
 import { createMiddleware } from "@tanstack/react-start";
 import { getRequest, setResponseHeader, setResponseStatus } from "@tanstack/react-start/server";
+
 import { auth } from "../auth";
 
 // https://tanstack.com/start/latest/docs/framework/react/guide/middleware

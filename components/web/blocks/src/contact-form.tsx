@@ -1,22 +1,10 @@
 "use client";
 
 import { Button } from "@repo/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/card";
 import { Input } from "@repo/ui/input";
 import { Label } from "@repo/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@repo/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ui/select";
 import { Textarea } from "@repo/ui/textarea";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import type React from "react";
@@ -88,7 +76,7 @@ export function ContactForm() {
           <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-emerald-500/10">
             <CheckCircle2 className="size-8 text-emerald-500" />
           </div>
-          <h3 className="mb-2 font-semibold text-xl">Message Sent!</h3>
+          <h3 className="mb-2 text-xl font-semibold">Message Sent!</h3>
           <p className="text-center text-muted-foreground">
             Thank you for reaching out. We'll get back to you within 24-48 hours.
           </p>
@@ -127,7 +115,7 @@ export function ContactForm() {
                 placeholder="John Doe"
                 value={formData.name}
               />
-              {errors.name && <p className="text-destructive text-sm">{errors.name}</p>}
+              {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
             </div>
 
             <div className="space-y-2">
@@ -140,7 +128,7 @@ export function ContactForm() {
                 type="email"
                 value={formData.email}
               />
-              {errors.email && <p className="text-destructive text-sm">{errors.email}</p>}
+              {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
             </div>
           </div>
 
@@ -162,7 +150,7 @@ export function ContactForm() {
                 <SelectItem value="other">Other</SelectItem>
               </SelectContent>
             </Select>
-            {errors.subject && <p className="text-destructive text-sm">{errors.subject}</p>}
+            {errors.subject && <p className="text-sm text-destructive">{errors.subject}</p>}
           </div>
 
           <div className="space-y-2">
@@ -175,7 +163,7 @@ export function ContactForm() {
               rows={5}
               value={formData.message}
             />
-            {errors.message && <p className="text-destructive text-sm">{errors.message}</p>}
+            {errors.message && <p className="text-sm text-destructive">{errors.message}</p>}
           </div>
 
           <Button className="w-full" disabled={isSubmitting} type="submit">

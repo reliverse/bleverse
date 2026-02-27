@@ -34,7 +34,7 @@ export function TeamSection() {
     <section className="py-20 sm:py-32" id="team">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-bold text-3xl tracking-tight sm:text-4xl">Meet the Team</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Meet the Team</h2>
           <p className="mt-4 text-lg text-muted-foreground">
             The talented individuals behind the Bleverse ecosystem.
           </p>
@@ -59,7 +59,7 @@ export function TeamSection() {
                     <Badge className="mt-1" variant="secondary">
                       {member.role}
                     </Badge>
-                    <p className="mt-3 text-muted-foreground text-sm">{member.bio}</p>
+                    <p className="mt-3 text-sm text-muted-foreground">{member.bio}</p>
                     <div className="mt-4 flex items-center gap-3">
                       <a
                         aria-label={`${member.name}'s website`}

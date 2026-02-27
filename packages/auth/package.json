@@ -1,18 +1,18 @@
 {
   "name": "@repo/auth",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
+  "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
   },
   "dependencies": {
-    "@repo/env": "workspace:*",
     "@better-auth/expo": "catalog:",
-    "@repo/db": "workspace:*",
     "@polar-sh/better-auth": "catalog:",
-    "@polar-sh/sdk": "catalog:",
+    "@repo/billing": "workspace:*",
+    "@repo/db": "workspace:*",
+    "@repo/env": "workspace:*",
     "better-auth": "catalog:",
     "zod": "catalog:"
   },

@@ -42,8 +42,7 @@ export const Route = createRootRouteWithContext<{
       },
       {
         name: "description",
-        content:
-          "Social Network",
+        content: "Social Network",
       },
     ],
     links: [{ rel: "stylesheet", href: appCss }],

@@ -38,12 +38,12 @@ Always use the `@repo/backend/*` path alias for imports:
 
 ```typescript
 // Good
-import { Id } from "@repo/backend/_generated/dataModel"
-import { QueryCtx } from "@repo/backend/_generated/server"
-import { DatabaseError, dbError } from "@repo/backend/lib/errors"
+import { Id } from "@repo/backend/_generated/dataModel";
+import { QueryCtx } from "@repo/backend/_generated/server";
+import { DatabaseError, dbError } from "@repo/backend/lib/errors";
 
 // Avoid
-import { DatabaseError } from "../../lib/errors"
+import { DatabaseError } from "../../lib/errors";
 ```
 
 ### Table Definitions
@@ -52,27 +52,27 @@ Tables are defined in `/tables` using `zodvex` for validation:
 
 ```typescript
 // packages/backend/src/tables/tasks.ts
-import { z } from "zod"
-import { zodTable } from "zodvex"
+import { z } from "zod";
+import { zodTable } from "zodvex";
 
 export const Tasks = zodTable("tasks", {
   text: z.string(),
   completed: z.boolean(),
   createdAt: z.number(),
-})
+});
 ```
 
 The root schema imports and combines all tables:
 
 ```typescript
 // packages/backend/src/schema.ts
-import { defineSchema } from "convex/server"
+import { defineSchema } from "convex/server";
 
-import { Tasks } from "./tables/tasks"
+import { Tasks } from "./tables/tasks";
 
 export default defineSchema({
   tasks: Tasks.table,
-})
+});
 ```
 
 #### Adding Indexes
@@ -82,10 +82,8 @@ Add indexes to tables in the schema:
 ```typescript
 // packages/backend/src/schema.ts
 export default defineSchema({
-  tasks: Tasks.table
-    .index("by_completed", ["completed"])
-    .index("by_created", ["createdAt"]),
-})
+  tasks: Tasks.table.index("by_completed", ["completed"]).index("by_created", ["createdAt"]),
+});
 ```
 
 ### Middleware
@@ -94,17 +92,17 @@ The `lib/middleware.ts` file exports Zod-wrapped versions of Convex's `query`, `
 
 ```typescript
 // packages/backend/src/lib/middleware.ts
-import { zActionBuilder, zMutationBuilder, zQueryBuilder } from "zodvex"
+import { zActionBuilder, zMutationBuilder, zQueryBuilder } from "zodvex";
 
 import {
   action as convexAction,
   mutation as convexMutation,
   query as convexQuery,
-} from "@repo/backend/_generated/server"
+} from "@repo/backend/_generated/server";
 
-export const query = zQueryBuilder(convexQuery)
-export const mutation = zMutationBuilder(convexMutation)
-export const action = zActionBuilder(convexAction)
+export const query = zQueryBuilder(convexQuery);
+export const mutation = zMutationBuilder(convexMutation);
+export const action = zActionBuilder(convexAction);
 ```
 
 **When to use middleware vs raw Convex:**
@@ -120,21 +118,21 @@ Handlers are currently simple and direct, using Convex's built-in validators:
 
 ```typescript
 // packages/backend/src/modules/task/queries.ts
-import { query } from "@repo/backend/_generated/server"
+import { query } from "@repo/backend/_generated/server";
 
 export const list = query({
   args: {},
   handler: async (ctx) => {
-    return await ctx.db.query("tasks").order("desc").collect()
+    return await ctx.db.query("tasks").order("desc").collect();
   },
-})
+});
 ```
 
 ```typescript
 // packages/backend/src/modules/task/mutations.ts
-import { v } from "convex/values"
+import { v } from "convex/values";
 
-import { mutation } from "@repo/backend/_generated/server"
+import { mutation } from "@repo/backend/_generated/server";
 
 export const create = mutation({
   args: { text: v.string() },
@@ -143,28 +141,28 @@ export const create = mutation({
       text: args.text,
       completed: false,
       createdAt: Date.now(),
-    })
+    });
   },
-})
+});
 
 export const toggle = mutation({
   args: { id: v.id("tasks") },
   handler: async (ctx, args) => {
-    const task = await ctx.db.get(args.id)
-    if (!task) throw new Error("Task not found")
+    const task = await ctx.db.get(args.id);
+    if (!task) throw new Error("Task not found");
 
     await ctx.db.patch(args.id, {
       completed: !task.completed,
-    })
+    });
   },
-})
+});
 
 export const remove = mutation({
   args: { id: v.id("tasks") },
   handler: async (ctx, args) => {
-    await ctx.db.delete(args.id)
+    await ctx.db.delete(args.id);
   },
-})
+});
 ```
 
 ### Error Handling
@@ -174,23 +172,23 @@ The error system provides a base error type and helpers for type-safe error chec
 ```typescript
 // packages/backend/src/lib/errors.ts
 export type BaseError<Code extends string = string> = {
-  code: Code
-  message?: string
-  cause?: unknown
-}
+  code: Code;
+  message?: string;
+  cause?: unknown;
+};
 
 export function isError<T extends string>(
   error: BaseError<string>,
   code: T,
 ): error is BaseError<T> {
-  return error.code === code
+  return error.code === code;
 }
 
 export function isOneOf<T extends string>(
   error: BaseError<string>,
   codes: readonly T[],
 ): error is BaseError<T> {
-  return codes.includes(error.code as T)
+  return codes.includes(error.code as T);
 }
 ```
 
@@ -205,7 +203,7 @@ export enum DatabaseErrorCode {
   NOT_FOUND = "NOT_FOUND",
 }
 
-export type DatabaseError = BaseError<DatabaseErrorCode>
+export type DatabaseError = BaseError<DatabaseErrorCode>;
 
 export const dbError = {
   queryFailed: (cause?: unknown): DatabaseError => ({
@@ -214,7 +212,7 @@ export const dbError = {
     cause,
   }),
   // ... other error factories
-}
+};
 ```
 
 ### Logging
@@ -222,12 +220,12 @@ export const dbError = {
 A simple structured logger is available for consistent logging:
 
 ```typescript
-import { logger } from "@repo/backend/lib/logger"
+import { logger } from "@repo/backend/lib/logger";
 
-logger.info("Task created", { taskId: "123" })
-logger.error("Failed to create task", { error: err.message })
-logger.warn("Task not found", { taskId: args.id })
-logger.debug("Processing task", { task })
+logger.info("Task created", { taskId: "123" });
+logger.error("Failed to create task", { error: err.message });
+logger.warn("Task not found", { taskId: args.id });
+logger.debug("Processing task", { task });
 ```
 
 Log level is controlled via the `LOG_LEVEL` environment variable (defaults to "debug").
@@ -238,8 +236,8 @@ Environment variables are validated using `@repo/env` and ArkType:
 
 ```typescript
 // packages/backend/src/lib/env.ts
-import { createEnv, defaulted } from "@repo/env"
-import { type } from "arktype"
+import { createEnv, defaulted } from "@repo/env";
+import { type } from "arktype";
 
 export const env = createEnv({
   emptyStringAsUndefined: true,
@@ -247,7 +245,7 @@ export const env = createEnv({
   server: {
     LOG_LEVEL: defaulted(type("'debug' | 'info' | 'warn' | 'error'"), "debug"),
   },
-})
+});
 ```
 
 ## API Paths
@@ -297,25 +295,25 @@ export function TaskList() {
 1. **Create the table definition** in `/tables/[name].ts`:
 
    ```typescript
-   import { z } from "zod"
-   import { zodTable } from "zodvex"
-   
+   import { z } from "zod";
+   import { zodTable } from "zodvex";
+
    export const Users = zodTable("users", {
      name: z.string(),
      email: z.string().email(),
      createdAt: z.number(),
-   })
+   });
    ```
 
 2. **Add table to schema.ts**:
 
    ```typescript
-   import { Users } from "./tables/users"
-   
+   import { Users } from "./tables/users";
+
    export default defineSchema({
      tasks: Tasks.table,
      users: Users.table,
-   })
+   });
    ```
 
 3. **Create module folder** `/modules/[name]/`
@@ -335,14 +333,14 @@ For richer validation and frontend sharing, use Zod validators via middleware:
 
 ```typescript
 // packages/backend/src/modules/task/mutations.ts
-import { z } from "zod"
+import { z } from "zod";
 
-import { mutation } from "@repo/backend/lib/middleware"
+import { mutation } from "@repo/backend/lib/middleware";
 
 const createTaskInput = z.object({
   text: z.string().min(1).max(500),
   priority: z.enum(["low", "medium", "high"]).optional(),
-})
+});
 
 export const create = mutation({
   args: createTaskInput,
@@ -352,9 +350,9 @@ export const create = mutation({
       priority: args.priority ?? "medium",
       completed: false,
       createdAt: Date.now(),
-    })
+    });
   },
-})
+});
 ```
 
 ### Separating Validators for Frontend Sharing
@@ -363,28 +361,28 @@ Create a `validators.ts` file to share schemas with frontend:
 
 ```typescript
 // packages/backend/src/modules/task/validators.ts
-import { z } from "zod"
+import { z } from "zod";
 
 export const createTaskInput = z.object({
   text: z.string().min(1).max(500),
   priority: z.enum(["low", "medium", "high"]).optional(),
-})
+});
 
-export type CreateTaskInput = z.infer<typeof createTaskInput>
+export type CreateTaskInput = z.infer<typeof createTaskInput>;
 ```
 
 Frontend usage with react-hook-form:
 
 ```typescript
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
-import type { CreateTaskInput } from "@repo/backend/modules/task/validators"
-import { createTaskInput } from "@repo/backend/modules/task/validators"
+import type { CreateTaskInput } from "@repo/backend/modules/task/validators";
+import { createTaskInput } from "@repo/backend/modules/task/validators";
 
 const form = useForm<CreateTaskInput>({
   resolver: zodResolver(createTaskInput),
-})
+});
 ```
 
 ### Services Layer with Result Types
@@ -393,17 +391,17 @@ For complex business logic, create a services layer that returns `Result<T, E>` 
 
 ```typescript
 // packages/backend/src/modules/task/services/mutations.ts
-import { err, fromPromise, ok, Result } from "neverthrow"
+import { err, fromPromise, ok, Result } from "neverthrow";
 
-import type { MutationCtx } from "@repo/backend/_generated/server"
-import { DatabaseError, dbError } from "@repo/backend/lib/errors"
+import type { MutationCtx } from "@repo/backend/_generated/server";
+import { DatabaseError, dbError } from "@repo/backend/lib/errors";
 
 export async function create(
   ctx: MutationCtx,
   args: { text: string },
 ): Promise<Result<string, DatabaseError>> {
   if (args.text.length > 500) {
-    return err(dbError.insertFailed("Text too long"))
+    return err(dbError.insertFailed("Text too long"));
   }
 
   return await fromPromise(
@@ -413,7 +411,7 @@ export async function create(
       createdAt: Date.now(),
     }),
     dbError.insertFailed,
-  )
+  );
 }
 ```
 
@@ -421,27 +419,27 @@ Handler unwraps the Result:
 
 ```typescript
 // packages/backend/src/modules/task/mutations.ts
-import { v } from "convex/values"
+import { v } from "convex/values";
 
-import { mutation } from "@repo/backend/_generated/server"
-import { logger } from "@repo/backend/lib/logger"
+import { mutation } from "@repo/backend/_generated/server";
+import { logger } from "@repo/backend/lib/logger";
 
-import * as TaskServices from "./services/mutations"
+import * as TaskServices from "./services/mutations";
 
 export const create = mutation({
   args: { text: v.string() },
   handler: async (ctx, args) => {
-    const result = await TaskServices.create(ctx, args)
+    const result = await TaskServices.create(ctx, args);
 
     if (result.isErr()) {
-      logger.error("Failed to create task", { error: result.error })
-      throw new Error("Failed to create task")
+      logger.error("Failed to create task", { error: result.error });
+      throw new Error("Failed to create task");
     }
 
-    logger.info("Task created", { taskId: result.value })
-    return result.value
+    logger.info("Task created", { taskId: result.value });
+    return result.value;
   },
-})
+});
 ```
 
 ### Internal Functions
@@ -450,26 +448,26 @@ For cron jobs or internal operations, create internal functions:
 
 ```typescript
 // packages/backend/src/modules/task/internal_mutations.ts
-import { v } from "convex/values"
+import { v } from "convex/values";
 
-import { internalMutation } from "@repo/backend/_generated/server"
+import { internalMutation } from "@repo/backend/_generated/server";
 
 export const cleanup = internalMutation({
   args: { olderThanDays: v.number() },
   handler: async (ctx, args) => {
-    const cutoff = Date.now() - args.olderThanDays * 24 * 60 * 60 * 1000
+    const cutoff = Date.now() - args.olderThanDays * 24 * 60 * 60 * 1000;
     const staleTasks = await ctx.db
       .query("tasks")
       .filter((q) => q.lt(q.field("createdAt"), cutoff))
-      .collect()
+      .collect();
 
     for (const task of staleTasks) {
-      await ctx.db.delete(task._id)
+      await ctx.db.delete(task._id);
     }
 
-    return staleTasks.length
+    return staleTasks.length;
   },
-})
+});
 ```
 
 ### Authenticated Middleware
@@ -478,58 +476,55 @@ For protected routes, extend the context with user data:
 
 ```typescript
 // packages/backend/src/lib/middleware.ts
-import type { ExtractCtx } from "zodvex"
-import { customCtx, zCustomMutationBuilder, zCustomQueryBuilder } from "zodvex"
+import type { ExtractCtx } from "zodvex";
+import { customCtx, zCustomMutationBuilder, zCustomQueryBuilder } from "zodvex";
 
-import type { Doc } from "@repo/backend/_generated/dataModel"
-import type { MutationCtx, QueryCtx } from "@repo/backend/_generated/server"
-import {
-  mutation as convexMutation,
-  query as convexQuery,
-} from "@repo/backend/_generated/server"
+import type { Doc } from "@repo/backend/_generated/dataModel";
+import type { MutationCtx, QueryCtx } from "@repo/backend/_generated/server";
+import { mutation as convexMutation, query as convexQuery } from "@repo/backend/_generated/server";
 
 export const authQuery = zCustomQueryBuilder(
   convexQuery,
   customCtx(async (ctx: QueryCtx): Promise<{ user: Doc<"users"> }> => {
-    const identity = await ctx.auth.getUserIdentity()
-    if (!identity) throw new Error("Unauthorized")
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
 
     const user = await ctx.db
       .query("users")
       .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-      .unique()
+      .unique();
 
-    if (!user) throw new Error("User not found")
-    return { user }
+    if (!user) throw new Error("User not found");
+    return { user };
   }),
-)
+);
 
 export const authMutation = zCustomMutationBuilder(
   convexMutation,
   customCtx(async (ctx: MutationCtx): Promise<{ user: Doc<"users"> }> => {
-    const identity = await ctx.auth.getUserIdentity()
-    if (!identity) throw new Error("Unauthorized")
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Unauthorized");
 
     const user = await ctx.db
       .query("users")
       .withIndex("by_clerk_id", (q) => q.eq("clerkId", identity.subject))
-      .unique()
+      .unique();
 
-    if (!user) throw new Error("User not found")
-    return { user }
+    if (!user) throw new Error("User not found");
+    return { user };
   }),
-)
+);
 
-export type AuthQueryCtx = ExtractCtx<typeof authQuery>
-export type AuthMutationCtx = ExtractCtx<typeof authMutation>
+export type AuthQueryCtx = ExtractCtx<typeof authQuery>;
+export type AuthMutationCtx = ExtractCtx<typeof authMutation>;
 ```
 
 Usage:
 
 ```typescript
-import { z } from "zod"
+import { z } from "zod";
 
-import { authMutation } from "@repo/backend/lib/middleware"
+import { authMutation } from "@repo/backend/lib/middleware";
 
 export const createPost = authMutation({
   args: z.object({ title: z.string(), content: z.string() }),
@@ -539,9 +534,9 @@ export const createPost = authMutation({
       ...args,
       userId: ctx.user._id,
       createdAt: Date.now(),
-    })
+    });
   },
-})
+});
 ```
 
 ## Summary

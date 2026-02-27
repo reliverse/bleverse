@@ -1,11 +1,5 @@
 import { Button } from "@repo/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/card";
 import type { NotFoundRouteProps } from "@tanstack/react-router";
 import { Home, Search } from "lucide-react";
 

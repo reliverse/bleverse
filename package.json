@@ -6,13 +6,16 @@
     "packages": [
       "apps/*",
       "components/mobile/*",
-      "components/shared",
+      "components/utils",
       "components/web/*",
-      "documentation",
       "packages/*",
-      "scripts"
+      "scripts",
+      "wiki"
     ],
     "catalog": {
+      "nanoid": "^5.1.6",
+      "@tanstack/react-form-devtools": "^0.2.16",
+      "@fontsource-variable/inter": "^5.2.8",
       "@ai-sdk/devtools": "^0.0.14",
       "@ai-sdk/google": "^3.0.29",
       "@ai-sdk/react": "^3.0.88",
@@ -197,8 +200,8 @@
     "auth:secret": "bunx @better-auth/cli@latest secret",
     "auth:generate": "bun -F=@repo/db run auth:generate",
     "skills": "bunx skills@latest",
-    "check": "bun typecheck && bun format && bun lint",
-    "typecheck": "bun dler tsc",
+    "check": "bun format && bun lint",
+    "dler:typecheck": "bun dler tsc",
     "test": "turbo run test",
     "format:fix": "turbo run format:fix",
     "lint:ws": "bunx sherif@latest",
@@ -213,6 +216,7 @@
     "@reliverse/dler": "^2.3.4",
     "@tanstack/eslint-plugin-query": "^5.91.4",
     "@tanstack/eslint-plugin-router": "^1.161.4",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-turbo": "^2.8.11",
     "oxfmt": "^0.35.0",
     "oxlint": "^1.50.0",

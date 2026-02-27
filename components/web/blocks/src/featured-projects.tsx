@@ -2,6 +2,7 @@ import { Badge } from "@repo/ui/badge";
 import { Card } from "@repo/ui/card";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+
 import { projects } from "./lib/projects";
 
 export function FeaturedProjects() {
@@ -18,13 +19,13 @@ export function FeaturedProjects() {
             <Badge className="mb-4" variant="secondary">
               Featured
             </Badge>
-            <h2 className="font-bold text-3xl tracking-tight sm:text-4xl">Top Projects</h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Top Projects</h2>
             <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
               Our most popular and actively maintained projects
             </p>
           </div>
           <a
-            className="hidden items-center gap-1 font-medium text-accent text-sm hover:underline sm:flex"
+            className="hidden items-center gap-1 text-sm font-medium text-accent hover:underline sm:flex"
             href="/#projects"
           >
             View all projects
@@ -63,7 +64,7 @@ export function FeaturedProjects() {
 
         <div className="mt-8 text-center sm:hidden">
           <a
-            className="inline-flex items-center gap-1 font-medium text-accent text-sm hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
             href="/#projects"
           >
             View all projects

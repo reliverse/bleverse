@@ -1,3 +1,4 @@
+import { Button } from "@repo/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,11 +8,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@repo/ui/dropdown-menu";
-import { Link, useNavigate } from "@tanstack/react-router";
-import authClient from "./lib/auth/auth-client";
-
-import { Button } from "@repo/ui/button";
 import { Skeleton } from "@repo/ui/skeleton";
+import { Link, useNavigate } from "@tanstack/react-router";
+
+import authClient from "./lib/auth/auth-client";
 
 export default function UserMenu() {
   const navigate = useNavigate();

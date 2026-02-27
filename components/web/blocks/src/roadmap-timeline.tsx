@@ -1,11 +1,5 @@
 import { Badge } from "@repo/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/card";
 import { CheckCircle2, Circle, Clock } from "lucide-react";
 
 interface RoadmapItem {
@@ -62,10 +56,7 @@ const roadmapData: RoadmapItem[] = [
     title: "Scale",
     description: "Scaling infrastructure and launching major products",
     status: "upcoming",
-    items: [
-      "Mobile applications",
-      "Enterprise solutions",
-    ],
+    items: ["Mobile applications", "Enterprise solutions"],
   },
   {
     quarter: "Q1",
@@ -73,10 +64,7 @@ const roadmapData: RoadmapItem[] = [
     title: "Innovation",
     description: "Next-generation features and new product categories",
     status: "upcoming",
-    items: [
-      "AI-powered development tools",
-      "Global expansion",
-    ],
+    items: ["AI-powered development tools", "Global expansion"],
   },
 ];
 
@@ -128,7 +116,7 @@ export function RoadmapTimeline() {
                 <CardHeader>
                   <div className="flex flex-wrap items-center gap-3">
                     <Badge variant={config.badgeVariant}>{config.badge}</Badge>
-                    <span className="font-medium text-muted-foreground text-sm">
+                    <span className="text-sm font-medium text-muted-foreground">
                       {item.quarter} {item.year}
                     </span>
                   </div>
@@ -139,7 +127,7 @@ export function RoadmapTimeline() {
                   <ul className="grid gap-2 sm:grid-cols-2">
                     {item.items.map((listItem, itemIndex) => (
                       <li
-                        className="flex items-center gap-2 text-muted-foreground text-sm"
+                        className="flex items-center gap-2 text-sm text-muted-foreground"
                         key={itemIndex}
                       >
                         {item.status === "completed" ? (

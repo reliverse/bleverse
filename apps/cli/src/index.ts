@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 import { mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
+
 import {
   createBleverseApiClient,
   getApp,
@@ -96,7 +97,12 @@ async function deployApp(appId: string) {
   if (code !== 0) throw new Error(`deploy failed for app ${appId} (exit=${code})`);
 }
 
-async function runGitpick(template: string, targetDir: string, branch?: string, recursive?: boolean) {
+async function runGitpick(
+  template: string,
+  targetDir: string,
+  branch?: string,
+  recursive?: boolean,
+) {
   const args = ["x", "gitpick", template, targetDir];
   if (branch) args.push("-b", branch);
   if (recursive) args.push("-r");
@@ -121,7 +127,8 @@ async function appStatus(appId: string, registryPath?: string) {
   const env = {
     ...process.env,
     XDG_RUNTIME_DIR: process.env.XDG_RUNTIME_DIR ?? `/run/user/${uid}`,
-    DBUS_SESSION_BUS_ADDRESS: process.env.DBUS_SESSION_BUS_ADDRESS ?? `unix:path=/run/user/${uid}/bus`,
+    DBUS_SESSION_BUS_ADDRESS:
+      process.env.DBUS_SESSION_BUS_ADDRESS ?? `unix:path=/run/user/${uid}/bus`,
   };
 
   const statusProc = Bun.spawn(["systemctl", "--user", "is-active", app.service], { env });
@@ -303,7 +310,9 @@ async function main() {
 
     if (action === "add") {
       if (!a1 || !a2 || !a3 || !a4 || !a5) {
-        throw new Error("usage: bleverse app add <id> <repoDir> <workspacePath> <service> <smokeUrl> [registryPath]");
+        throw new Error(
+          "usage: bleverse app add <id> <repoDir> <workspacePath> <service> <smokeUrl> [registryPath]",
+        );
       }
       const app: AppRegistryEntry = {
         id: a1,

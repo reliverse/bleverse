@@ -3,6 +3,7 @@
 This document explains how the **Bleverse™** name and branding may be used.
 
 > **Notes:**
+>
 > - Open-source licenses grant rights to use, modify, and redistribute **code**.
 > - They do **not** automatically grant rights to use **names, logos, or branding**.
 > - This policy describes the project's claimed brand identifiers and aims to prevent user confusion.

@@ -48,11 +48,11 @@ export function GitHubStats() {
             {loading ? (
               <Skeleton className="mb-1 h-8 w-16" />
             ) : (
-              <span className="font-bold text-2xl tabular-nums">
+              <span className="text-2xl font-bold tabular-nums">
                 {item.value?.toLocaleString()}
               </span>
             )}
-            <span className="text-muted-foreground text-sm">{item.label}</span>
+            <span className="text-sm text-muted-foreground">{item.label}</span>
           </CardContent>
         </Card>
       ))}

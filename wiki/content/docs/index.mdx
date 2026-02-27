@@ -1,0 +1,289 @@
+---
+title: Welcome to Bleverse
+description: The bleverse.com documentation.
+---
+
+import { Card, Cards } from "fumadocs-ui/components/card";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+# Bleverse
+
+Bleverse community documentation. A modern full-stack monorepo built with cutting-edge technologies for our exclusive developer community.
+
+Welcome to the Bleverse Docs!
+
+## Available Articles
+
+<Cards>
+  <Card title="No Dark Patterns" href="/docs/philosophy/no-dark-patterns" />
+  <Card title="Ads on Bleverse" href="/docs/philosophy/advertising" />
+</Cards>
+
+## What is Bleverse?
+
+Bleverse is the monorepo ecosystem designed exclusively for our closed community of developers. Built with modern tools and practices, it provides a solid foundation for building web applications, APIs, and native experiences.
+
+<Cards>
+  <Card title="Web Applications" description="Modern web apps built with TanStack Router, React, and Tailwind CSS">
+    ```tsx
+    // File-based routing with TanStack Router
+    export const Route = createFileRoute('/dashboard')({
+      component: () => <DashboardPage />,
+    })
+    ```
+  </Card>
+  <Card title="Backend APIs" description="Type-safe APIs built with Elysia.js and Convex database integration">
+    ```ts
+    // RESTful API with Elysia.js
+    app.get('/api/users', ({ query }) => {
+      return getUsers(query.limit)
+    })
+    ```
+  </Card>
+  <Card title="Database & Auth" description="Real-time database with Convex and secure authentication with Better Auth">
+    ```ts
+    // Convex schema definition
+    const users = table({
+      email: v.string(),
+      name: v.string(),
+    })
+    ```
+  </Card>
+  <Card title="Cross-Platform Apps" description="React Native apps built with Expo for iOS and Android">
+    ```tsx
+    // Expo app with shared components
+    import { BleverseButton } from '@repo/ui'
+    ```
+  </Card>
+</Cards>
+
+## Quick Start
+
+<Tabs groupId="getting-started" defaultValue="web">
+  <Tab value="web" label="Web Development">
+    ```bash
+    # Clone the Bleverse monorepo
+    git clone https://github.com/blefnk/bleverse.git
+    cd bleverse
+
+    # Install dependencies
+    bun install
+
+    # Start development
+    bun run dev:web
+    ```
+
+  </Tab>
+  <Tab value="api" label="API Development">
+    ```bash
+    # Start the API server
+    bun run dev:api
+
+    # API will be available at http://localhost:3001
+    ```
+
+  </Tab>
+  <Tab value="native" label="Native Apps">
+    ```bash
+    # Start Expo development
+    bun run dev:native
+
+    # Scan QR code with Expo Go app
+    ```
+
+  </Tab>
+</Tabs>
+
+**Calm by default. Powerful by design.**
+
+Bleverse is an open-source social platform at [bleverse.com](https://bleverse.com). It is built around clarity, consent, and modular architecture.
+
+## What is Bleverse?
+
+Bleverse is not just a social network. It is:
+
+- **A place where identity and projects can stay**: Your profile and work in one coherent space.
+- **A modular foundation for human-first platforms**: Designed for people, not algorithms.
+- **A reference implementation of ethical social infrastructure**: Open source and transparent.
+- **A platform that respects attention**: No dark patterns, explainable ranking, optional feed.
+
+## Principles
+
+- Designed to respect attention.
+- Clear system boundaries.
+- Open by architecture.
+- Modular by design.
+
+## Philosophy
+
+- No dark patterns.
+- Feed is optional.
+- Ranking is explainable.
+- Accessibility by default.
+- Consent precedes automation.
+- System actions are visible and reversible.
+- Personalization is explicit and user-controlled.
+
+## Learn More
+
+<Cards>
+  <Card
+    title="Getting Started"
+    description="Sign up, create your profile, and take your first steps on Bleverse"
+    href="/docs/intro/getting-started"
+  />
+  <Card
+    title="Features"
+    description="Profile, projects, feed, and visibility controls"
+    href="/docs/intro/features"
+  />
+  <Card
+    title="Philosophy"
+    description="Principles and design philosophy behind Bleverse"
+    href="/docs/philosophy"
+  />
+  <Card
+    title="Privacy"
+    description="Privacy, consent, and how your data is handled"
+    href="/docs/privacy"
+  />
+  <Card
+    title="Accessibility"
+    description="Our commitment to accessibility"
+    href="/docs/accessibility"
+  />
+  <Card
+    title="Contributing"
+    description="How to contribute to Bleverse"
+    href="/docs/contributors"
+  />
+</Cards>
+
+## Join Bleverse
+
+[Bleverse.com](https://bleverse.com): the social platform built for clarity and consent.
+
+## Core Applications
+
+### 🌐 Web Apps (@repo/apps-web-bleverse)
+
+Main web application with modern tooling:
+
+- **TanStack Router** - File-based routing with SSR support
+- **React 19** - Latest React with concurrent features
+- **Tailwind CSS** - Utility-first styling with custom design system
+- **AI Integration** - Built-in chat and assistant features
+
+### 🚀 API (@api)
+
+Backend API with type safety:
+
+- **Elysia.js** - Fast, type-safe web framework for Bun
+- **OpenAPI** - Automatic API documentation generation
+- **TypeScript** - Full type safety across the stack
+- **RESTful design** - Clean, predictable API patterns
+
+### 📱 Native Apps (@expo/kitchen)
+
+Cross-platform mobile applications:
+
+- **Expo** - React Native with enhanced developer experience
+- **Shared components** - Consistent UI across platforms
+- **Native performance** - Compiled apps for iOS and Android
+- **Live updates** - Over-the-air updates for rapid iteration
+
+### 🗄️ Database (@convex)
+
+Real-time database and authentication:
+
+- **Convex** - Real-time database with reactive queries
+- **Better Auth** - Secure authentication with multiple providers
+- **Type safety** - End-to-end type safety with generated clients
+- **Real-time sync** - Automatic data synchronization
+
+## Why Bleverse?
+
+### Built for Our Community
+
+Designed exclusively for our closed developer community:
+
+- **Shared ownership** - Everyone contributes to the monorepo
+- **Consistent patterns** - Unified architecture across all apps
+- **Rapid development** - Monorepo tooling for fast iteration
+- **Quality assurance** - Automated testing and code review processes
+
+### Modern Tech Stack
+
+Cutting-edge technologies chosen for productivity:
+
+- **Bun runtime** - Fast package management and execution
+- **TypeScript strict** - Type safety throughout the codebase
+- **Monorepo architecture** - Shared packages and tooling
+- **Best-in-class libraries** - Carefully selected dependencies
+
+### Developer-First Culture
+
+Our monorepo reflects our values:
+
+- **Code quality** - Strict linting, testing, and review standards
+- **Documentation** - Comprehensive internal documentation
+- **Knowledge sharing** - Shared understanding through code
+- **Innovation** - Space to experiment with new technologies
+
+## Our Applications
+
+<Cards>
+  <Card
+    title="Bleverse Web"
+    description="Main web application with AI chat, modern UI, and comprehensive features"
+    href="/docs/intro/getting-started"
+  />
+  <Card
+    title="Kitchen App"
+    description="Demo application showcasing our component library and design system"
+    href="/docs/intro/getting-started"
+  />
+  <Card
+    title="Bleverse API"
+    description="Backend API serving all our applications with type-safe endpoints"
+    href="/docs/intro/getting-started"
+  />
+</Cards>
+
+## Getting Started
+
+<Cards>
+  <Card
+    title="Getting Started Guide"
+    description="Complete setup and development workflow for Bleverse"
+    href="/docs/intro/getting-started"
+  />
+  <Card
+    title="Environment Setup"
+    description="Configure your development environment"
+    href="/docs/intro/env"
+  />
+  <Card
+    title="Contributing"
+    description="How to contribute to the Bleverse monorepo"
+    href="/docs/intro/contributing"
+  />
+  <Card
+    title="Code Standards"
+    description="Our coding conventions and best practices"
+    href="/docs/intro/standard"
+  />
+</Cards>
+
+## Community & Resources
+
+Internal resources for Bleverse community members:
+
+- **GitHub** - [blefnk/bleverse](https://github.com/blefnk/bleverse)
+- **Internal Wiki** - Private documentation and resources
+- **Development** - Local development setup and workflows
+- **Support** - Get help from fellow community members
+
+---
+
+_Built with ❤️ for our developer community_

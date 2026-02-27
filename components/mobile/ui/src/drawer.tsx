@@ -1,16 +1,17 @@
-import * as React from 'react';
-import { Platform, Pressable, View } from 'react-native';
 import {
   BottomSheetModal,
   BottomSheetBackdrop,
   type BottomSheetModalProps,
   type BottomSheetBackdropProps,
-} from '@gorhom/bottom-sheet';
-import { useColorScheme } from 'nativewind';
-import { Text } from './text';
-import { cn } from '@repo/ui-utils/cn';
-import * as Slot from '@rn-primitives/slot';
-import { Portal } from '@rn-primitives/portal';
+} from "@gorhom/bottom-sheet";
+import { cn } from "@repo/ui-utils/cn";
+import { Portal } from "@rn-primitives/portal";
+import * as Slot from "@rn-primitives/slot";
+import { useColorScheme } from "nativewind";
+import * as React from "react";
+import { Platform, Pressable, View } from "react-native";
+
+import { Text } from "./text";
 
 const DrawerContext = React.createContext<{
   open: boolean;
@@ -41,7 +42,7 @@ export function Drawer({
       setUncontrolledOpen(value);
       onOpenChange?.(value);
     },
-    [onOpenChange]
+    [onOpenChange],
   );
 
   const openDrawer = React.useCallback(() => setOpen(true), [setOpen]);
@@ -61,7 +62,7 @@ export const DrawerTrigger = React.forwardRef<
   const { openDrawer } = React.useContext(DrawerContext);
 
   const handlePress = (e: any) => {
-    console.log('[DrawerTrigger] Tapped! Opening drawer...');
+    console.log("[DrawerTrigger] Tapped! Opening drawer...");
     openDrawer();
     onPress?.(e);
   };
@@ -72,11 +73,11 @@ export const DrawerTrigger = React.forwardRef<
 
   return <Pressable ref={ref} onPress={handlePress} {...props} />;
 });
-DrawerTrigger.displayName = 'DrawerTrigger';
+DrawerTrigger.displayName = "DrawerTrigger";
 
 export const DrawerContent = React.forwardRef<
   React.ElementRef<typeof BottomSheetModal>,
-  Omit<BottomSheetModalProps, 'ref' | 'snapPoints'> & {
+  Omit<BottomSheetModalProps, "ref" | "snapPoints"> & {
     children: React.ReactNode;
     snapPoints?: string[] | number[];
   }
@@ -84,20 +85,20 @@ export const DrawerContent = React.forwardRef<
   const { open, closeDrawer } = React.useContext(DrawerContext);
   const internalRef = React.useRef<BottomSheetModal>(null);
   const { colorScheme } = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const isDark = colorScheme === "dark";
 
-  const defaultSnapPoints = React.useMemo(() => ['50%'], []);
+  const defaultSnapPoints = React.useMemo(() => ["50%"], []);
   const memoizedSnapPoints = React.useMemo(
     () => snapPoints || defaultSnapPoints,
-    [snapPoints, defaultSnapPoints]
+    [snapPoints, defaultSnapPoints],
   );
 
   React.useEffect(() => {
     console.log(
-      '[DrawerContent] open state changed:',
+      "[DrawerContent] open state changed:",
       open,
-      'modal ref exists:',
-      !!internalRef.current
+      "modal ref exists:",
+      !!internalRef.current,
     );
     if (open) {
       internalRef.current?.present();
@@ -114,7 +115,7 @@ export const DrawerContent = React.forwardRef<
     (backdropProps: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop {...backdropProps} disappearsOnIndex={-1} appearsOnIndex={0} />
     ),
-    []
+    [],
   );
 
   return (
@@ -122,7 +123,7 @@ export const DrawerContent = React.forwardRef<
       <BottomSheetModal
         ref={(node) => {
           internalRef.current = node as any;
-          if (typeof ref === 'function') ref(node);
+          if (typeof ref === "function") ref(node);
           else if (ref) (ref as any).current = node;
         }}
         index={0}
@@ -130,7 +131,7 @@ export const DrawerContent = React.forwardRef<
         enableDynamicSizing={false}
         onDismiss={handleDismiss}
         backdropComponent={renderBackdrop}
-        {...(Platform.OS === 'web'
+        {...(Platform.OS === "web"
           ? {
               backgroundComponent: ({ style }: any) => (
                 <View
@@ -147,36 +148,37 @@ export const DrawerContent = React.forwardRef<
           : {
               backgroundStyle: [
                 {
-                  backgroundColor: isDark ? 'hsl(240 10% 3.9%)' : 'hsl(0 0% 100%)', // matching bg-background
+                  backgroundColor: isDark ? "hsl(240 10% 3.9%)" : "hsl(0 0% 100%)", // matching bg-background
                 },
                 props.backgroundStyle,
               ],
               handleIndicatorStyle: [
                 {
-                  backgroundColor: isDark ? 'hsl(240 3.7% 15.9%)' : 'hsl(240 5.9% 90%)', // matching bg-muted
+                  backgroundColor: isDark ? "hsl(240 3.7% 15.9%)" : "hsl(240 5.9% 90%)", // matching bg-muted
                   width: 50,
                 },
                 props.handleIndicatorStyle,
               ],
             })}
         keyboardBlurBehavior="restore"
-        {...props}>
-        <View className={cn('flex-1 bg-background', isDark ? 'dark' : '')}>{children}</View>
+        {...props}
+      >
+        <View className={cn("flex-1 bg-background", isDark ? "dark" : "")}>{children}</View>
       </BottomSheetModal>
     </Portal>
   );
 });
-DrawerContent.displayName = 'DrawerContent';
+DrawerContent.displayName = "DrawerContent";
 
 export function DrawerHeader({ className, ...props }: React.ComponentPropsWithoutRef<typeof View>) {
-  return <View className={cn('gap-1.5 p-4 text-center sm:text-left', className)} {...props} />;
+  return <View className={cn("gap-1.5 p-4 text-center sm:text-left", className)} {...props} />;
 }
-DrawerHeader.displayName = 'DrawerHeader';
+DrawerHeader.displayName = "DrawerHeader";
 
 export function DrawerFooter({ className, ...props }: React.ComponentPropsWithoutRef<typeof View>) {
-  return <View className={cn('mt-auto gap-2 p-4', className)} {...props} />;
+  return <View className={cn("mt-auto gap-2 p-4", className)} {...props} />;
 }
-DrawerFooter.displayName = 'DrawerFooter';
+DrawerFooter.displayName = "DrawerFooter";
 
 export const DrawerTitle = React.forwardRef<
   React.ElementRef<typeof Text>,
@@ -184,19 +186,19 @@ export const DrawerTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Text
     ref={ref}
-    className={cn('text-lg font-semibold leading-none tracking-tight text-foreground', className)}
+    className={cn("text-lg leading-none font-semibold tracking-tight text-foreground", className)}
     {...props}
   />
 ));
-DrawerTitle.displayName = 'DrawerTitle';
+DrawerTitle.displayName = "DrawerTitle";
 
 export const DrawerDescription = React.forwardRef<
   React.ElementRef<typeof Text>,
   React.ComponentPropsWithoutRef<typeof Text>
 >(({ className, ...props }, ref) => (
-  <Text ref={ref} className={cn('text-sm text-muted-foreground', className)} {...props} />
+  <Text ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
 ));
-DrawerDescription.displayName = 'DrawerDescription';
+DrawerDescription.displayName = "DrawerDescription";
 
 export const DrawerClose = React.forwardRef<
   React.ElementRef<typeof Pressable>,
@@ -215,4 +217,4 @@ export const DrawerClose = React.forwardRef<
 
   return <Pressable ref={ref} onPress={handlePress} {...props} />;
 });
-DrawerClose.displayName = 'DrawerClose';
+DrawerClose.displayName = "DrawerClose";

@@ -1,12 +1,6 @@
 import { Badge } from "@repo/ui/badge";
 import { Button } from "@repo/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/card";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Cloud, Code2, Palette, Rocket, Shield, Smartphone } from "lucide-react";
 
@@ -66,7 +60,7 @@ export function ServicesSection() {
           <Badge className="mb-4" variant="secondary">
             What We Offer
           </Badge>
-          <h2 className="font-bold text-3xl tracking-tight sm:text-4xl">Services & Expertise</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Services & Expertise</h2>
           <p className="mt-4 text-lg text-muted-foreground">
             From concept to deployment, we provide comprehensive solutions for your digital needs
           </p>
@@ -94,7 +88,7 @@ export function ServicesSection() {
                 <ul className="space-y-2">
                   {service.features.map((feature) => (
                     <li
-                      className="flex items-center gap-2 text-muted-foreground text-sm"
+                      className="flex items-center gap-2 text-sm text-muted-foreground"
                       key={feature}
                     >
                       <div className="size-1.5 rounded-full bg-accent" />

@@ -1,13 +1,8 @@
 import { Button } from "@repo/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@repo/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/card";
 import { isNotFound } from "@tanstack/react-router";
 import { AlertTriangle, Home, RefreshCw } from "lucide-react";
+
 import { NotFoundErrorPage } from "./not-found-page";
 
 interface ErrorPageProps {
@@ -49,8 +44,8 @@ export function ErrorPage({
         <CardContent className="space-y-4">
           {showErrorDetails && error && (
             <div className="rounded-md bg-muted p-3">
-              <p className="font-medium text-muted-foreground text-sm">Error details:</p>
-              <p className="mt-1 text-muted-foreground text-sm">{error.message}</p>
+              <p className="text-sm font-medium text-muted-foreground">Error details:</p>
+              <p className="mt-1 text-sm text-muted-foreground">{error.message}</p>
             </div>
           )}
           <div className="flex flex-col gap-2 sm:flex-row">

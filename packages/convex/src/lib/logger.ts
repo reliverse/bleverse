@@ -48,7 +48,7 @@ class Logger {
       this._currentLevel = envLogLevel;
     } else {
       console.log(
-        `LOG_LEVEL environment variable not set or invalid. Defaulting to: ${this._currentLevel.toUpperCase()}`
+        `LOG_LEVEL environment variable not set or invalid. Defaulting to: ${this._currentLevel.toUpperCase()}`,
       );
     }
   }
@@ -56,7 +56,7 @@ class Logger {
   setLogLevel(level: LogLevel): void {
     if (this._logLevelPriorities[level] === undefined) {
       console.warn(
-        `Invalid log level '${level}', defaulting to '${this._currentLevel.toUpperCase()}'.`
+        `Invalid log level '${level}', defaulting to '${this._currentLevel.toUpperCase()}'.`,
       );
     } else {
       this._currentLevel = level;

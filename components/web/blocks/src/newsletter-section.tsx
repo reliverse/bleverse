@@ -26,7 +26,7 @@ export function NewsletterSection() {
             <div className="mx-auto mb-6 flex size-14 items-center justify-center rounded-full bg-accent/10">
               <Mail className="size-7 text-accent" />
             </div>
-            <h2 className="font-bold text-2xl tracking-tight sm:text-3xl">Stay Updated</h2>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">Stay Updated</h2>
             <p className="mt-3 text-muted-foreground">
               Get notified about new projects, releases, and updates from the Bleverse ecosystem.
             </p>

@@ -77,7 +77,7 @@ export function TestimonialsSection() {
     <section className="py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <h2 className="font-bold text-3xl tracking-tight sm:text-4xl">Trusted by Developers</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Trusted by Developers</h2>
           <p className="mt-4 text-lg text-muted-foreground">
             See what the community says about our products
           </p>
@@ -87,7 +87,7 @@ export function TestimonialsSection() {
           <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
             <CardContent className="p-8 sm:p-12">
               <Quote className="mb-6 size-10 text-accent/30" />
-              <blockquote className="mb-8 text-foreground text-xl leading-relaxed sm:text-2xl">
+              <blockquote className="mb-8 text-xl leading-relaxed text-foreground sm:text-2xl">
                 "{currentTestimonial.content}"
               </blockquote>
               <div className="flex items-center gap-4">
@@ -105,7 +105,7 @@ export function TestimonialsSection() {
                 </Avatar>
                 <div>
                   <div className="font-semibold">{currentTestimonial.author}</div>
-                  <div className="text-muted-foreground text-sm">
+                  <div className="text-sm text-muted-foreground">
                     {currentTestimonial.role} at {currentTestimonial.company}
                   </div>
                 </div>

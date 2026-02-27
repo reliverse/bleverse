@@ -9,6 +9,23 @@ interface TOCItem {
   level: number;
 }
 
+function sanitizeHeadingText(text: string): string {
+  const normalized = text.replace(/\s+/g, " ").trim();
+
+  if (!normalized) return "";
+
+  return normalized.replace(/[<>&]/g, "");
+}
+
+function headingTextToId(text: string): string {
+  if (!text) return "";
+
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-_]/g, "");
+}
+
 export function ProjectTableOfContents() {
   const [headings, setHeadings] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState("");
@@ -19,12 +36,13 @@ export function ProjectTableOfContents() {
 
     const elements = article.querySelectorAll("h2, h3");
     const items: TOCItem[] = Array.from(elements).map((element) => {
-      const text = element.textContent?.trim() || "";
+      const rawText = element.textContent?.trim() ?? "";
+      const text = sanitizeHeadingText(rawText);
       const levelText = element.tagName.slice(1);
       const levelValue = Number.parseInt(levelText || "2", 10);
 
       return {
-        id: element.id || text.toLowerCase().replace(/\s+/g, "-") || "",
+        id: element.id || headingTextToId(text) || "",
         text,
         level: Number.isNaN(levelValue) ? 2 : levelValue,
       };

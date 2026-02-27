@@ -5,10 +5,11 @@ import { Input } from "@repo/ui/input";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeftRight, LayoutGrid, List, Search } from "lucide-react";
 import { useMemo, useState } from "react";
+
+import { type ProjectCategory, projects } from "./lib/projects";
 import { PortfolioCard } from "./portfolio-card";
 import { ProjectFilter } from "./project-filter";
 import { StaggeredGrid } from "./staggered-grid";
-import { type ProjectCategory, projects } from "./lib/projects";
 
 export function PortfolioGrid() {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | "all">("all");
@@ -71,14 +72,14 @@ export function PortfolioGrid() {
         </div>
       </div>
 
-      <div className="text-muted-foreground text-sm">
+      <div className="text-sm text-muted-foreground">
         Showing {filteredProjects.length} of {projects.length} projects
       </div>
 
       {filteredProjects.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <p className="font-medium text-lg text-muted-foreground">No projects found</p>
-          <p className="mt-1 text-muted-foreground text-sm">
+          <p className="text-lg font-medium text-muted-foreground">No projects found</p>
+          <p className="mt-1 text-sm text-muted-foreground">
             Try adjusting your filters or search query
           </p>
         </div>

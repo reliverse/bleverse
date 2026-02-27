@@ -7,6 +7,8 @@
  * @module
  */
 
+import type { ApiFromModules, FilterApi, FunctionReference } from "convex/server";
+
 import type * as lib_env from "../lib/env.js";
 import type * as lib_errors from "../lib/errors.js";
 import type * as lib_logger from "../lib/logger.js";
@@ -14,8 +16,6 @@ import type * as lib_middleware from "../lib/middleware.js";
 import type * as modules_task_mutations from "../modules/task/mutations.js";
 import type * as modules_task_queries from "../modules/task/queries.js";
 import type * as tables_tasks from "../tables/tasks.js";
-
-import type { ApiFromModules, FilterApi, FunctionReference } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
   "lib/env": typeof lib_env;

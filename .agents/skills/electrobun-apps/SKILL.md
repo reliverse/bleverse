@@ -18,7 +18,7 @@ Electrobun builds cross-platform desktop applications with TypeScript that are s
 
 ## Important
 
-Electrobun is NOT Electron. Different architecture, different APIs. Do not use Electron patterns.   
+Electrobun is NOT Electron. Different architecture, different APIs. Do not use Electron patterns.
 
 ## Docs
 

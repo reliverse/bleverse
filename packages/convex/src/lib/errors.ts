@@ -20,7 +20,7 @@ export interface BaseError<Code extends string = string> {
  */
 export function isError<T extends string>(
   error: BaseError<string>,
-  code: T
+  code: T,
 ): error is BaseError<T> {
   return error.code === code;
 }
@@ -30,7 +30,7 @@ export function isError<T extends string>(
  */
 export function isOneOf<T extends string>(
   error: BaseError<string>,
-  codes: readonly T[]
+  codes: readonly T[],
 ): error is BaseError<T> {
   return codes.includes(error.code as T);
 }

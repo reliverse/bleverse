@@ -3,15 +3,10 @@
 import { Badge } from "@repo/ui/badge";
 import { Button } from "@repo/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@repo/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@repo/ui/select";
 import { ArrowLeftRight, X } from "lucide-react";
 import { useState } from "react";
+
 import { type Project, projects } from "./lib/projects";
 
 export function ProjectComparison() {
@@ -95,21 +90,21 @@ export function ProjectComparison() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-muted-foreground text-sm">{project.shortDescription}</p>
+                <p className="text-sm text-muted-foreground">{project.shortDescription}</p>
 
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between border-border/50 border-b pb-2">
-                    <span className="text-muted-foreground text-sm">Category</span>
+                  <div className="flex items-center justify-between border-b border-border/50 pb-2">
+                    <span className="text-sm text-muted-foreground">Category</span>
                     <Badge className="capitalize" variant="secondary">
                       {project.category}
                     </Badge>
                   </div>
-                  <div className="flex items-center justify-between border-border/50 border-b pb-2">
-                    <span className="text-muted-foreground text-sm">Launch</span>
+                  <div className="flex items-center justify-between border-b border-border/50 pb-2">
+                    <span className="text-sm text-muted-foreground">Launch</span>
                     <span className="text-sm">{project.lastUpdate}</span>
                   </div>
                   <div>
-                    <span className="mb-2 block text-muted-foreground text-sm">Technologies</span>
+                    <span className="mb-2 block text-sm text-muted-foreground">Technologies</span>
                     <div className="flex flex-wrap gap-1">
                       {project.tags.map((tag) => (
                         <Badge className="text-xs" key={tag} variant="outline">
@@ -126,7 +121,7 @@ export function ProjectComparison() {
       )}
 
       {!(project1 && project2) && (
-        <div className="rounded-lg border border-border/50 border-dashed bg-muted/20 p-12 text-center">
+        <div className="rounded-lg border border-dashed border-border/50 bg-muted/20 p-12 text-center">
           <p className="text-muted-foreground">
             Select two projects above to compare their features
           </p>

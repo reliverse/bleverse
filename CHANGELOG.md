@@ -7,31 +7,37 @@ This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0) and
 ## [Unreleased]
 
 ### Added
+
 -
 
 ### Changed
+
 -
 
 ### Deprecated
+
 -
 
 ### Removed
+
 -
 
 ### Fixed
+
 -
 
 ### Security
--
 
----
+- ***
 
 ## [0.1.0] - 2026-??-??
 
 ### Added
+
 - Initial public release.
 
 ### Released
+
 [Unreleased]: https://github.com/reliverse/bleverse/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/reliverse/bleverse/releases/tag/v0.1.0
 

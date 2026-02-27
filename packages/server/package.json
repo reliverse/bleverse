@@ -1,8 +1,8 @@
 {
   "name": "@repo/server",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
+  "type": "module",
   "exports": {
     ".": {
       "default": "./src/index.ts"
@@ -13,13 +13,13 @@
   },
   "scripts": {},
   "dependencies": {
-    "@repo/env": "workspace:*",
-    "@repo/auth": "workspace:*",
-    "@repo/db": "workspace:*",
     "@orpc/client": "catalog:",
     "@orpc/openapi": "catalog:",
     "@orpc/server": "catalog:",
     "@orpc/zod": "catalog:",
+    "@repo/auth": "workspace:*",
+    "@repo/db": "workspace:*",
+    "@repo/env": "workspace:*",
     "@types/pg": "catalog:",
     "drizzle-orm": "catalog:",
     "elysia": "catalog:",

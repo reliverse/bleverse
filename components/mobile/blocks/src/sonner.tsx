@@ -1,15 +1,9 @@
-import React, { useRef, useEffect } from "react";
-import { Toaster as SonnerToaster, toast } from "sonner-native";
+import { CheckCircle2, AlertCircle, AlertTriangle, Info, Loader2 } from "lucide-react-native";
 import { useColorScheme } from "nativewind";
+import React, { useRef, useEffect } from "react";
 import { Platform } from "react-native";
-import {
-  CheckCircle2,
-  AlertCircle,
-  AlertTriangle,
-  Info,
-  Loader2,
-} from "lucide-react-native";
 import { Animated, Easing } from "react-native";
+import { Toaster as SonnerToaster, toast } from "sonner-native";
 
 type ToasterProps = React.ComponentPropsWithoutRef<typeof SonnerToaster>;
 
@@ -28,10 +22,7 @@ function Toaster({ ...props }: ToasterProps) {
         warning: <AlertTriangle size={20} color="hsl(47.9 95.8% 53.1%)" />,
         info: <Info size={20} color="hsl(221.2 83.2% 53.3%)" />,
         loading: (
-          <SpinningLoader
-            size={20}
-            color={isDark ? "hsl(0 0% 98%)" : "hsl(240 5.9% 10%)"}
-          />
+          <SpinningLoader size={20} color={isDark ? "hsl(0 0% 98%)" : "hsl(240 5.9% 10%)"} />
         ),
       }}
       toastOptions={{

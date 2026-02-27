@@ -1,10 +1,5 @@
 import { Badge } from "@repo/ui/badge";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@repo/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/tooltip";
 
 interface Technology {
   name: string;
@@ -47,7 +42,7 @@ export function TechStackDisplay() {
     <section className="py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <h2 className="font-bold text-3xl tracking-tight sm:text-4xl">Our Tech Stack</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Tech Stack</h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Modern technologies powering the Bleverse ecosystem
           </p>
@@ -67,7 +62,7 @@ export function TechStackDisplay() {
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="font-medium">{tech.name}</p>
-                  <p className="text-muted-foreground text-xs">{tech.description}</p>
+                  <p className="text-xs text-muted-foreground">{tech.description}</p>
                 </TooltipContent>
               </Tooltip>
             ))}

@@ -39,7 +39,7 @@ export function CookieConsent() {
               <X className="size-4" />
             </Button>
           </div>
-          <p className="mb-4 text-muted-foreground text-sm">
+          <p className="mb-4 text-sm text-muted-foreground">
             We use cookies to enhance your browsing experience and analyze site traffic. By clicking
             "Accept", you consent to our use of cookies.
           </p>

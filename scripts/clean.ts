@@ -176,7 +176,9 @@ async function main(): Promise<void> {
   const start = performance.now();
 
   if (cli.dryRun) {
-    console.log(`${colors.yellow}${ICONS.broom} Dry run mode - showing what would be cleaned...${colors.nc}`);
+    console.log(
+      `${colors.yellow}${ICONS.broom} Dry run mode - showing what would be cleaned...${colors.nc}`,
+    );
   } else {
     console.log(`${colors.blue}${ICONS.broom} Cleaning up codebase...${colors.nc}`);
   }
@@ -234,7 +236,9 @@ async function main(): Promise<void> {
       );
       process.exit(1);
     }
-    console.log(`${colors.green}${ICONS.sparkle} Cleanup complete! Removed ${removedCount} items in ${elapsed}.${colors.nc}`);
+    console.log(
+      `${colors.green}${ICONS.sparkle} Cleanup complete! Removed ${removedCount} items in ${elapsed}.${colors.nc}`,
+    );
     process.exit(0);
   }
 

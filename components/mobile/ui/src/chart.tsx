@@ -1,12 +1,7 @@
-import * as React from "react";
-import {
-  View,
-  Text,
-  type ViewStyle,
-  type LayoutChangeEvent,
-} from "react-native";
-import { useColorScheme } from "nativewind";
 import { cn } from "@repo/ui-utils/cn";
+import { useColorScheme } from "nativewind";
+import * as React from "react";
+import { View, Text, type ViewStyle, type LayoutChangeEvent } from "react-native";
 
 export type ChartConfig = {
   [key: string]: {
@@ -77,11 +72,7 @@ export function ChartContainer({
       const childProps = child.props as Record<string, any>;
       const data: any[] | undefined = childProps.data;
 
-      if (
-        !data?.length ||
-        childProps.donut !== undefined ||
-        childProps.radius !== undefined
-      ) {
+      if (!data?.length || childProps.donut !== undefined || childProps.radius !== undefined) {
         return child;
       }
 
@@ -137,9 +128,7 @@ export function ChartContainer({
   }, [children]);
 
   return (
-    <ChartContext.Provider
-      value={{ config: chartConfig, width: containerWidth }}
-    >
+    <ChartContext.Provider value={{ config: chartConfig, width: containerWidth }}>
       <View
         id={id}
         onLayout={handleLayout}
@@ -158,23 +147,14 @@ export function ChartContainer({
   );
 }
 
-export function ChartLegend({
-  className,
-  style,
-}: {
-  className?: string;
-  style?: any;
-}) {
+export function ChartLegend({ className, style }: { className?: string; style?: any }) {
   const { config } = useChart();
 
   if (!config) return null;
 
   return (
     <View
-      className={cn(
-        "mt-4 flex flex-row flex-wrap items-center justify-center gap-4",
-        className,
-      )}
+      className={cn("mt-4 flex flex-row flex-wrap items-center justify-center gap-4", className)}
       style={style}
     >
       {Object.entries(config).map(([key, item]) => {
@@ -218,9 +198,7 @@ export function ChartTooltip({
   return (
     <View className="min-w-[130px] rounded-xl border border-border bg-card px-3 py-2 shadow-sm">
       {!hideLabel && tooltipLabel ? (
-        <Text className="mb-2 text-sm font-medium text-foreground">
-          {tooltipLabel}
-        </Text>
+        <Text className="mb-2 text-sm font-medium text-foreground">{tooltipLabel}</Text>
       ) : null}
       <View className="flex flex-col gap-1.5">
         {items.map((item: any, index: number) => {
@@ -228,21 +206,15 @@ export function ChartTooltip({
           // If the item doesn't explicitly have a `dataKey`, try to match it by index,
           // or fallback to the first config key if it's a single-series chart.
           const key =
-            item.dataKey ||
-            item.name ||
-            configKeys[Math.min(index, configKeys.length - 1)];
+            item.dataKey || item.name || configKeys[Math.min(index, configKeys.length - 1)];
           const conf = config[key];
 
           if (!conf) return null;
 
-          const itemColor =
-            item.color || item.frontColor || conf.color || "#000";
+          const itemColor = item.color || item.frontColor || conf.color || "#000";
 
           return (
-            <View
-              key={index}
-              className="flex flex-row items-center justify-between gap-4"
-            >
+            <View key={index} className="flex flex-row items-center justify-between gap-4">
               <View className="flex flex-row items-center gap-2">
                 {!hideIndicator && (
                   <View
@@ -254,13 +226,9 @@ export function ChartTooltip({
                     }}
                   />
                 )}
-                <Text className="text-sm text-muted-foreground">
-                  {conf.label || key}
-                </Text>
+                <Text className="text-sm text-muted-foreground">{conf.label || key}</Text>
               </View>
-              <Text className="font-mono text-sm font-bold text-foreground">
-                {item.value}
-              </Text>
+              <Text className="font-mono text-sm font-bold text-foreground">{item.value}</Text>
             </View>
           );
         })}
