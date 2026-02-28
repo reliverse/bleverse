@@ -89,6 +89,8 @@ jobs:
             TARGET_REF="${GITHUB_SHA}"
           fi
 
+          REMOTE_CMD='set -euo pipefail; TARGET_SELECTOR="${DEPLOY_TARGET_SELECTOR:-bleverse-web}"; TARGET_REF="${DEPLOY_TARGET_REF:-}"; DEPLOY_BIN="$HOME/.local/bin/bleverse-deploy-app"; REG="${BLEVERSE_REGISTRY_PATH:-$HOME/.config/deploy.json}"; [ -x "$DEPLOY_BIN" ] || { echo "❌ Missing executable deploy script: $DEPLOY_BIN"; exit 1; }; [ -f "$REG" ] || { echo "❌ Missing deploy registry: $REG"; exit 1; }; RESOLVED_JSON="$($DEPLOY_BIN --resolve "$TARGET_SELECTOR")"; APP_ID="$(python3 -c "import json,sys; print(json.loads(sys.argv[1])[\"id\"])" "$RESOLVED_JSON")"; REPO_DIR="$(python3 -c "import json,sys; print(json.loads(sys.argv[1])[\"repoDir\"])" "$RESOLVED_JSON")"; if [ -n "$TARGET_REF" ]; then git -C "$REPO_DIR" fetch --all --prune; RESOLVED_TARGET="$(git -C "$REPO_DIR" rev-parse "$TARGET_REF")"; git -C "$REPO_DIR" checkout --force --detach "$RESOLVED_TARGET"; export BLEVERSE_GIT_PULL_STRATEGY_OVERRIDE=none; fi; "$DEPLOY_BIN" "$APP_ID"; if [ -n "$TARGET_REF" ]; then DEPLOYED_SHA="$(git -C "$REPO_DIR" rev-parse HEAD)"; [ "$DEPLOYED_SHA" = "$RESOLVED_TARGET" ] || { echo "❌ Deployed SHA mismatch: expected $RESOLVED_TARGET got $DEPLOYED_SHA"; exit 1; }; echo "✅ Deployed exact ref: $DEPLOYED_SHA"; fi; echo "✅ Deploy finished successfully"'
+
           ssh \
             -p "${SSH_PORT}" \
             -o BatchMode=yes \
@@ -99,45 +101,4 @@ jobs:
             -o ServerAliveInterval=15 \
             -o ServerAliveCountMax=3 \
             "${SSH_USER}@${SSH_HOST}" \
-            DEPLOY_TARGET_SELECTOR="${TARGET_SELECTOR}" \
-            DEPLOY_TARGET_REF="${TARGET_REF}" \
-            'bash -seuo pipefail' <<'REMOTE'
-              TARGET_SELECTOR="${DEPLOY_TARGET_SELECTOR:-bleverse-web}"
-              TARGET_REF="${DEPLOY_TARGET_REF:-}"
-              DEPLOY_BIN="$HOME/.local/bin/bleverse-deploy-app"
-              REG="${BLEVERSE_REGISTRY_PATH:-$HOME/.config/deploy.json}"
-
-              if [ ! -x "$DEPLOY_BIN" ]; then
-                echo "❌ Missing executable deploy script: $DEPLOY_BIN"
-                exit 1
-              fi
-
-              if [ ! -f "$REG" ]; then
-                echo "❌ Missing deploy registry: $REG"
-                exit 1
-              fi
-
-              RESOLVED_JSON="$($DEPLOY_BIN --resolve "$TARGET_SELECTOR")"
-              APP_ID="$(python3 -c 'import json,sys; print(json.loads(sys.argv[1])["id"])' "$RESOLVED_JSON")"
-              REPO_DIR="$(python3 -c 'import json,sys; print(json.loads(sys.argv[1])["repoDir"])' "$RESOLVED_JSON")"
-
-              if [ -n "$TARGET_REF" ]; then
-                git -C "$REPO_DIR" fetch --all --prune
-                RESOLVED_TARGET="$(git -C "$REPO_DIR" rev-parse "$TARGET_REF")"
-                git -C "$REPO_DIR" checkout --force --detach "$RESOLVED_TARGET"
-                export BLEVERSE_GIT_PULL_STRATEGY_OVERRIDE=none
-              fi
-
-              "$DEPLOY_BIN" "$APP_ID"
-
-              if [ -n "$TARGET_REF" ]; then
-                DEPLOYED_SHA="$(git -C "$REPO_DIR" rev-parse HEAD)"
-                if [ "$DEPLOYED_SHA" != "$RESOLVED_TARGET" ]; then
-                  echo "❌ Deployed SHA mismatch: expected $RESOLVED_TARGET got $DEPLOYED_SHA"
-                  exit 1
-                fi
-                echo "✅ Deployed exact ref: $DEPLOYED_SHA"
-              fi
-
-              echo "✅ Deploy finished successfully"
-            REMOTE
+            "DEPLOY_TARGET_SELECTOR=$(printf %q "$TARGET_SELECTOR") DEPLOY_TARGET_REF=$(printf %q "$TARGET_REF") bash -lc $(printf %q "$REMOTE_CMD")"
