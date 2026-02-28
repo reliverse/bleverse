@@ -1,8 +1,5 @@
-import { defineRelationsPart } from "drizzle-orm";
-
 import * as schema from "./";
 
-export const relations = defineRelationsPart(schema, (r) => ({
-  // Define your relations here
-  // https://orm.drizzle.team/docs/relations-v2
-}));
+// App relations (v1 API). Add per-table relations here when you have more tables.
+// https://orm.drizzle.team/docs/relations
+export const relations = {} as Record<string, unknown>;

@@ -1,5 +1,5 @@
-import { defineRelations } from "drizzle-orm";
 import { pgTable, text, timestamp, boolean, index } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm/relations";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -73,27 +73,14 @@ export const verification = pgTable(
   (table) => [index("verification_identifier_idx").on(table.identifier)],
 );
 
-export const relations = defineRelations({ user, session, account, verification }, (r) => ({
-  user: {
-    sessions: r.many.session({
-      from: r.user.id,
-      to: r.session.userId,
-    }),
-    accounts: r.many.account({
-      from: r.user.id,
-      to: r.account.userId,
-    }),
-  },
-  session: {
-    user: r.one.user({
-      from: r.session.userId,
-      to: r.user.id,
-    }),
-  },
-  account: {
-    user: r.one.user({
-      from: r.account.userId,
-      to: r.user.id,
-    }),
-  },
+// Drizzle relations v1 API (0.45.x). Relations v2 (defineRelations) is in drizzle-orm 1.x beta.
+export const userRelations = relations(user, (r) => ({
+  sessions: r.many(session),
+  accounts: r.many(account),
+}));
+export const sessionRelations = relations(session, (r) => ({
+  user: r.one(user, { fields: [session.userId], references: [user.id] }),
+}));
+export const accountRelations = relations(account, (r) => ({
+  user: r.one(user, { fields: [account.userId], references: [user.id] }),
 }));

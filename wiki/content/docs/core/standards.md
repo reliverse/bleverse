@@ -56,11 +56,11 @@ By loading the configuration once and passing it to `decide()`, you avoid repeti
 
 ## Maintain Consistent Code Formatting and Style
 
-A consistent coding style improves readability and reduces cognitive overhead. Use tools like **Biome** for formatting and linting. Enforce these tools via your CI pipeline so that all contributors follow the same code style.
+A consistent coding style improves readability and reduces cognitive overhead. Use tools like **oxlint** and **oxfmt** for formatting and linting. Enforce these tools via your CI pipeline so that all contributors follow the same code style.
 
-- Add `biome` as dev dependencies.
-- Configure `biome.json` for your project.
-- Run `biome format --fix` and `biome lint --fix` as part of your CI workflow.
+- Add `oxlint` and `oxfmt` as dev dependencies.
+- Configure `oxlintrc.json` and `oxfmtrc.json` for your project.
+- Run `oxlint --fix` and `oxfmt --fix` as part of your CI workflow.
 
 ## Use Environment Variables Securely
 

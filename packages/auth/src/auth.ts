@@ -64,7 +64,7 @@ export const auth = betterAuth({
               slug: "pro",
             },
           ],
-          successUrl: env.POLAR_SUCCESS_URL!,
+          successUrl: env.POLAR_SUCCESS_URL || "http://localhost:3000/app",
           authenticatedUsersOnly: true,
         }),
         portal(),

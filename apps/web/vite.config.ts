@@ -65,6 +65,7 @@ arkenvVitePlugin(Env) */
 
 export default defineConfig({
   resolve: {
+    dedupe: ["react", "react-dom", "react/jsx-runtime"],
     tsconfigPaths: true,
   },
   server: {

@@ -18,7 +18,7 @@
     "gitpick": "^4.12.4"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
+    "@types/bun": "catalog:",
     "@typescript/native-preview": "catalog:"
   }
 }

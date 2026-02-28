@@ -260,12 +260,12 @@ Design preset.
 - [x] init @repo/bleverse-docs
 - [x] init @repo/bleverse-mobile
 - [x] init @repo/bleverse-desktop
-- [ ] init @repo/ui @repo/blocks (web)
-- [ ] init @repo/ui @repo/blocks (mobile)
-- [ ] init: tailwind, tsconfig, @bleverse/sdk
-- [ ] init packages: server, env, kv, db, convex
-- [ ] init packages: auth, storage, billing, email
-- [ ] add .vscode: settings.json and extensions.json
+- [x] init @repo/ui @repo/blocks (web)
+- [x] init @repo/ui @repo/blocks (mobile)
+- [x] init: tailwind, tsconfig, @bleverse/sdk
+- [x] init packages: server, env, kv, db, convex
+- [x] init packages: auth, storage, billing, email
+- [x] add .vscode: settings.json and extensions.json
 - [ ] add .agents/skills: standards and remove-slop
 - [ ] add: turbo.json, biome.json, scripts/clean.sh
 - [ ] implement .github/workflows/deploy.yml
@@ -274,6 +274,7 @@ Design preset.
 - [ ] add: CONTRIBUTING.md, CHANGELOG.md
 - [ ] add: CODE_OF_CONDUCT.md, SECURITY.md
 - [ ] add: .github/FUNDING.yml, ROADMAP.md
+- [ ] migrate from biome to oxc lint and fmt
 
 ## Polish Markdown Files (before 0.2.0 release)
 
@@ -328,7 +329,6 @@ Design preset.
 - [ ] apps/web/components.json
 - [ ] apps/web/package.json
 - [ ] apps/web/tsconfig.json
-- [ ] biome.json
 - [ ] components/mobile/blocks/package.json
 - [ ] components/mobile/ui/package.json
 - [ ] components/web/blocks/components.json

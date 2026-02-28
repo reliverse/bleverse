@@ -38,9 +38,11 @@ We welcome contributions ❤️
 
 > Note: If you find a security issue, report it privately. See [SECURITY.md](SECURITY.md).
 
-## Documentation
+## Bleverse Wiki
 
-Documentation lives on [https://docs.bleverse.com](https://docs.bleverse.com)
+- Docs lives at [https://wiki.bleverse.com/docs](https://wiki.bleverse.com/docs)
+- Blog lives at [https://wiki.bleverse.com/blog](https://wiki.bleverse.com/blog)
+- Lore lives at [https://wiki.bleverse.com/lore](https://wiki.bleverse.com/lore)
 
 ## License
 

@@ -1,5 +1,5 @@
 import authClient from "@repo/auth/auth-client";
-import { Button } from "@repo/ui/components/button";
+import { Button } from "@repo/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 

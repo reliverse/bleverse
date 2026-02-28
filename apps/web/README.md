@@ -345,6 +345,6 @@ We use **bun** by default, but you can modify these scripts in [package.json](./
 
 - **`auth:generate`** - Regenerate the [auth db schema](./src/lib/db/schema/auth.schema.ts) if you've made changes to your Better Auth [config](./src/lib/auth/auth.ts).
 - **`db`** - Run [drizzle-kit](https://orm.drizzle.team/docs/kit-overview) commands. (e.g. `bun db generate`, `bun db studio`)
-- **`format`**, **`lint`**, **`typecheck`** - Run Biome, and check TypeScript types respectively.
+- **`format`**, **`lint`**, **`typecheck`** - Run oxlint and oxfmt, and check TypeScript types respectively.
   - **`check`** - Run all three above. (e.g. `bun check`)
 - **`deps`** - Selectively upgrade dependencies via taze.
