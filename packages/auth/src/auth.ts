@@ -54,7 +54,7 @@ export const auth = betterAuth({
     tanstackStartCookies(),
     polarPlugin({
       client: polarClient,
-      createCustomerOnSignUp: true,
+      createCustomerOnSignUp: false,
       enableCustomerPortal: true,
       use: [
         checkout({
