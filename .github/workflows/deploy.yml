@@ -121,28 +121,11 @@ jobs:
               APP_ID="$(python3 -c 'import json,sys; print(json.loads(sys.argv[1])["id"])' "$RESOLVED_JSON")"
               REPO_DIR="$(python3 -c 'import json,sys; print(json.loads(sys.argv[1])["repoDir"])' "$RESOLVED_JSON")"
 
-              TMP_REG=""
-
               if [ -n "$TARGET_REF" ]; then
                 git -C "$REPO_DIR" fetch --all --prune
                 RESOLVED_TARGET="$(git -C "$REPO_DIR" rev-parse "$TARGET_REF")"
                 git -C "$REPO_DIR" checkout --force --detach "$RESOLVED_TARGET"
-
-                TMP_REG="$(mktemp)"
-                python3 - "$REG" "$APP_ID" "$TMP_REG" <<'PY'
-                import json, sys
-                src, app_id, dst = sys.argv[1], sys.argv[2], sys.argv[3]
-                data = json.load(open(src))
-                for app in data.get("apps", []):
-                    if app.get("id") == app_id:
-                        deploy = app.get("deploy") or {}
-                        deploy["gitPullStrategy"] = "none"
-                        app["deploy"] = deploy
-                        break
-                with open(dst, "w") as f:
-                    json.dump(data, f)
-                PY
-                export BLEVERSE_REGISTRY_PATH="$TMP_REG"
+                export BLEVERSE_GIT_PULL_STRATEGY_OVERRIDE=none
               fi
 
               "$DEPLOY_BIN" "$APP_ID"
@@ -154,10 +137,6 @@ jobs:
                   exit 1
                 fi
                 echo "✅ Deployed exact ref: $DEPLOYED_SHA"
-              fi
-
-              if [ -n "$TMP_REG" ] && [ -f "$TMP_REG" ]; then
-                rm -f "$TMP_REG"
               fi
 
               echo "✅ Deploy finished successfully"
