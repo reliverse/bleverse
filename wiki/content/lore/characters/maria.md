@@ -1,6 +1,6 @@
 ---
-title: Maria — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Maria
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

@@ -1,6 +1,6 @@
 ---
-title: Jacob — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Jacob
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

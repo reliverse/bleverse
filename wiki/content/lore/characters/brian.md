@@ -1,6 +1,6 @@
 ---
-title: Brian — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Brian
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

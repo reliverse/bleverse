@@ -1,13 +1,36 @@
-import { source } from "~/lib/source";
+import { blogSource, loreSource, source } from "~/lib/source";
 
 export const revalidate = false;
 
 export async function GET() {
   const lines: string[] = [];
+
+  const docBase = "/docs";
+  const blogBase = "/blog";
+  const loreBase = "/lore";
+
   lines.push("# Documentation");
   lines.push("");
   for (const page of source.getPages()) {
-    lines.push(`- [${page.data.title}](${page.url}): ${page.data.description}`);
+    const url = `${docBase}/${page.url}`.replace(/\/+/g, "/");
+    lines.push(`- [${page.data.title}](${url}): ${page.data.description}`);
   }
+
+  lines.push("");
+  lines.push("# Blog");
+  lines.push("");
+  for (const page of blogSource.getPages()) {
+    const url = `${blogBase}/${page.url}`.replace(/\/+/g, "/");
+    lines.push(`- [${page.data.title}](${url}): ${page.data.description}`);
+  }
+
+  lines.push("");
+  lines.push("# Lore");
+  lines.push("");
+  for (const page of loreSource.getPages()) {
+    const url = `${loreBase}/${page.url}`.replace(/\/+/g, "/");
+    lines.push(`- [${page.data.title}](${url}): ${page.data.description}`);
+  }
+
   return new Response(lines.join("\n"));
 }

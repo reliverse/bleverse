@@ -1,6 +1,6 @@
 ---
-title: Lydia — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Lydia
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

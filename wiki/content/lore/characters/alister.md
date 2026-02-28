@@ -1,6 +1,6 @@
 ---
-title: Alister Thorn — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Alister
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

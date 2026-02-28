@@ -1,6 +1,6 @@
 ---
-title: Martin — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Martin
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

@@ -11,6 +11,14 @@ const config = {
         source: "/docs/:path*.mdx",
         destination: "/llms.mdx/docs/:path*",
       },
+      {
+        source: "/blog/:path*.mdx",
+        destination: "/llms.mdx/blog/:path*",
+      },
+      {
+        source: "/lore/:path*.mdx",
+        destination: "/llms.mdx/lore/:path*",
+      },
     ];
   },
 };

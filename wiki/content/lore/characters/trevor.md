@@ -1,6 +1,6 @@
 ---
-title: Trevor — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Trevor
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

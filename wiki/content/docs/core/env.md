@@ -4,7 +4,7 @@ description: A detailed guide to configuring and using environment variables in 
 ---
 
 :::note
-If you're looking how to fill out the `.env` file for the Relivator Next.js Template, please [visit the corresponding page](/relivator/env/). This document provides guidance on defining, accessing, and organizing environment variables.
+TL;DR: This document provides guidance on defining, accessing, and organizing environment variables.
 :::
 
 Environment variables play a crucial role in managing configuration settings for your application, enabling you to tailor your project's behavior without modifying the codebase.

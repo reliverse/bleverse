@@ -5,7 +5,7 @@ description: Learn about the universes in the Bleverse lore
 
 > ‼️ SPOILERS AHED ‼️
 
-- [Reliverse](universes/reliverse)
-- [Bleverse](universes/bleverse)
-- [Blefelheim](universes/blefelheim)
-- [Observable](universes/observable)
+- [Reliverse](/lore/universes/reliverse)
+- [Bleverse](/lore/universes/bleverse)
+- [Blefelheim](/lore/universes/blefelheim)
+- [Observable](/lore/universes/observable)

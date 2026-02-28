@@ -1,6 +1,6 @@
 ---
-title: Jon — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Jon
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

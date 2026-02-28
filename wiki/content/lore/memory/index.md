@@ -5,11 +5,11 @@ description: Learn about how the memory works in the Bleverse lore
 
 > ‼️ SPOILERS AHED ‼️
 
-- [Introduction](memory/introduction)
-- [Forgetting](memory/forgetting)
-- [Learning](memory/learning)
-- [Types](memory/types)
-- [Processes](memory/processes)
-- [Neuroscience](memory/neuroscience)
-- [Disorders](memory/disorders)
-- [Artificial](memory/artificial)
+- [Introduction](/lore/memory/introduction)
+- [Forgetting](/lore/memory/forgetting)
+- [Learning](/lore/memory/learning)
+- [Types](/lore/memory/types)
+- [Processes](/lore/memory/processes)
+- [Neuroscience](/lore/memory/neuroscience)
+- [Disorders](/lore/memory/disorders)
+- [Artificial](/lore/memory/artificial)

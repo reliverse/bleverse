@@ -1,6 +1,6 @@
 ---
-title: Natalie — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Natalie
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

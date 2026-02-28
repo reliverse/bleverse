@@ -7,7 +7,7 @@ Welcome to **Awesome Bleverse**.
 
 This is not just a list of repositories. It is a record of people who build with intention. Because Bleverse is more than a framework. It is an evolving architectural calm, modular, and creator-first philosophy. And every project listed here expands that philosophy in its own way.
 
-Every listed project carries a piece of its [creator's soul.md](../blog/soul.md). If some project resonates with you, please support it: star the repository, contribute, or sponsor the maintainers.
+Every listed project carries a piece of its [creator's soul](/blog/soul). If some project resonates with you, please support it: star the repository, contribute, or sponsor the maintainers.
 
 ## The Builders
 
@@ -41,6 +41,6 @@ Tools, templates, communities. They are all pushing toward better developer expe
 
 ## Thank You
 
-Bleverse grows because [builders](../blog/architects.md) care.
+Bleverse grows because [builders](/blog/architects) care.
 
 And if you are here, reading this, you are already part of that story.

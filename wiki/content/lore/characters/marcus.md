@@ -1,6 +1,6 @@
 ---
-title: Marcus — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Marcus
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

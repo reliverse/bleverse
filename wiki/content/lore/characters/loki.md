@@ -1,6 +1,6 @@
 ---
-title: Loki — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Loki
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

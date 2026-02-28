@@ -1,6 +1,6 @@
 ---
-title: Michael — Character Profile
-description: Classified Personnel File — Bleverse Lore
+title: Michael
+description: Classified Personnel File
 ---
 
 > ‼️ SPOILERS AHED ‼️

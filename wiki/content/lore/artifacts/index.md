@@ -5,7 +5,7 @@ description: Learn about the artifacts in the Bleverse lore
 
 > ‼️ SPOILERS AHED ‼️
 
-- [Blefonix](blefonix)
-- [Blefcoin](blefcoin)
-- [Air](air)
-- [Flower](flower)
+- [Blefonix](/lore/artifacts/blefonix)
+- [Blefcoin](/lore/artifacts/blefcoin)
+- [Air](/lore/artifacts/air)
+- [Flower](/lore/artifacts/flower)

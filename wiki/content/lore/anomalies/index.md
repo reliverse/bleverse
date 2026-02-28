@@ -5,9 +5,9 @@ description: Learn about the technologies in the Bleverse lore
 
 > ‼️ SPOILERS AHED ‼️
 
-- [Cognitive Anomaly](anomalies/cognitive)
-- [Spatial Anomaly](anomalies/spatial)
-- [Temporal Anomaly](anomalies/temporal)
-- [Physical Anomaly](anomalies/physical)
-- [Ontological Anomaly](anomalies/ontological)
-- [Biological Anomaly](anomalies/biological)
+- [Cognitive Anomaly](/lore/anomalies/cognitive)
+- [Spatial Anomaly](/lore/anomalies/spatial)
+- [Temporal Anomaly](/lore/anomalies/temporal)
+- [Physical Anomaly](/lore/anomalies/physical)
+- [Ontological Anomaly](/lore/anomalies/ontological)
+- [Biological Anomaly](/lore/anomalies/biological)
