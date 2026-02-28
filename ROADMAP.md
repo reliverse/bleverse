@@ -253,7 +253,7 @@ Design preset.
 ## Complete Initial Issues (before 0.1.0 release)
 
 - [x] push initial commit
-- [x] init @repo/bleverse-monorepo
+- [x] init @repo/bleverse-root
 - [x] init @repo/bleverse-web
 - [x] init @repo/bleverse-api
 - [x] init @repo/bleverse-cli
@@ -266,15 +266,16 @@ Design preset.
 - [x] init packages: server, env, kv, db, convex
 - [x] init packages: auth, storage, billing, email
 - [x] add .vscode: settings.json and extensions.json
-- [ ] add .agents/skills: standards and remove-slop
-- [ ] add: turbo.json, biome.json, scripts/clean.sh
-- [ ] implement .github/workflows/deploy.yml
-- [ ] add files: README.md, LICENSE, NOTICE
-- [ ] add .agents/skills: reliverse and frontend
-- [ ] add: CONTRIBUTING.md, CHANGELOG.md
-- [ ] add: CODE_OF_CONDUCT.md, SECURITY.md
-- [ ] add: .github/FUNDING.yml, ROADMAP.md
-- [ ] migrate from biome to oxc lint and fmt
+- [x] add .agents/skills: standards and remove-slop
+- [x] add: turbo.json, biome.json, scripts/clean.sh
+- [x] add .agents/skills: reliverse and frontend
+- [x] add files: README.md, LICENSE, NOTICE
+- [x] add: CONTRIBUTING.md, CHANGELOG.md
+- [x] add: CODE_OF_CONDUCT.md, SECURITY.md
+- [x] add: .github/FUNDING.yml, ROADMAP.md
+- [x] migrate from biome to oxc lint and fmt
+- [x] implement .github/workflows/deploy.yml
+- [x] implement initial web routes and env vars
 
 ## Polish Markdown Files (before 0.2.0 release)
 

@@ -32,7 +32,7 @@ Bleverse is not just a social network. It is:
 
 We welcome contributions ❤️
 
-- Contribute code ([CONTRIBUTING.md](CONTRIBUTING.md)/[ROADMAP.md](ROADMAP.md))
+- Contribute code (see [CONTRIBUTING.md](CONTRIBUTING.md))
 - [Support financially via GitHub Sponsors](https://github.com/sponsors/blefnk)
 - [Report issues or suggest features](https://github.com/reliverse/bleverse/issues)
 
