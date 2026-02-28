@@ -130,18 +130,18 @@ jobs:
 
                 TMP_REG="$(mktemp)"
                 python3 - "$REG" "$APP_ID" "$TMP_REG" <<'PY'
-import json, sys
-src, app_id, dst = sys.argv[1], sys.argv[2], sys.argv[3]
-data = json.load(open(src))
-for app in data.get("apps", []):
-    if app.get("id") == app_id:
-        deploy = app.get("deploy") or {}
-        deploy["gitPullStrategy"] = "none"
-        app["deploy"] = deploy
-        break
-with open(dst, "w") as f:
-    json.dump(data, f)
-PY
+                import json, sys
+                src, app_id, dst = sys.argv[1], sys.argv[2], sys.argv[3]
+                data = json.load(open(src))
+                for app in data.get("apps", []):
+                    if app.get("id") == app_id:
+                        deploy = app.get("deploy") or {}
+                        deploy["gitPullStrategy"] = "none"
+                        app["deploy"] = deploy
+                        break
+                with open(dst, "w") as f:
+                    json.dump(data, f)
+                PY
                 export BLEVERSE_REGISTRY_PATH="$TMP_REG"
               fi
 
@@ -161,4 +161,4 @@ PY
               fi
 
               echo "✅ Deploy finished successfully"
-          REMOTE
+            REMOTE
