@@ -48,11 +48,18 @@ jobs:
     environment: production
 
     steps:
-      - name: Start ssh-agent
-        uses: webfactory/ssh-agent@dc588b651fe13675774614f8e6a936a468676387 # v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
-          log-public-key: false
+      - name: Start ssh-agent (native)
+        shell: bash
+        run: |
+          set -euo pipefail
+          eval "$(ssh-agent -s)"
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-add ~/.ssh/id_deploy
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
+          echo "SSH_AGENT_PID=$SSH_AGENT_PID" >> "$GITHUB_ENV"
 
       - name: Configure known_hosts
         shell: bash
@@ -102,3 +109,12 @@ jobs:
             -o ServerAliveCountMax=3 \
             "${SSH_USER}@${SSH_HOST}" \
             "DEPLOY_TARGET_SELECTOR=$(printf %q "$TARGET_SELECTOR") DEPLOY_TARGET_REF=$(printf %q "$TARGET_REF") bash -lc $(printf %q "$REMOTE_CMD")"
+
+      - name: Stop ssh-agent (best-effort)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          if [[ -n "${SSH_AGENT_PID:-}" ]]; then
+            ssh-agent -k >/dev/null 2>&1 || true
+          fi
