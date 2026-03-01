@@ -209,7 +209,8 @@
     "ck:fix": "turbo run format:fix lint:fix && bun run lint:ws:fix",
     "pr": "bun run ck:fix && bun run ck",
     "dev:all": "bun run -F='*' dev",
-    "build:all": "bun run -F='*' build"
+    "build:all": "bun run -F='*' build",
+    "prepare:env": "bun scripts/prepare.ts"
   },
   "devDependencies": {
     "@reliverse/dler": "^2.3.4",
