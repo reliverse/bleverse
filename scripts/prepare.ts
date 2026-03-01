@@ -106,7 +106,12 @@ async function prepareDev(opts: { dryRun: boolean }): Promise<void> {
 
   if (!opts.dryRun) {
     // Unset hooksPath if it points to local deploy hooks.
-    const hooksPath = (await Bun.$`git config --get core.hooksPath`.quiet()).text().trim();
+    let hooksPath = "";
+    try {
+      hooksPath = (await Bun.$`git config --get core.hooksPath`.quiet()).text().trim();
+    } catch {
+      hooksPath = "";
+    }
     if (hooksPath === ".githooks") {
       await Bun.$`git config --unset core.hooksPath`;
       console.log("unset git core.hooksPath (.githooks)");
