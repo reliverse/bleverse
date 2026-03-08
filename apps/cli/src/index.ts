@@ -4,14 +4,22 @@ import path from "node:path";
 
 import {
   createBleverseApiClient,
+  deployAppById,
+  downPreviewRuntime,
   getApp,
+  getAppStatus,
   listApps,
   readRegistry,
+  rebuildPreviewRuntime,
   removeApp,
   resolveRegistryPath,
+  routerRequest,
+  statusPreviewRuntime,
+  upPreviewRuntime,
   upsertApp,
   writeRegistry,
   type AppRegistryEntry,
+  type PreviewRuntimeOptions,
 } from "@bleverse/sdk";
 
 type Flags = Record<string, string | boolean>;
@@ -76,25 +84,30 @@ Usage:
 
   bleverse api health [--base-url <url>] [--token <token>]
 
+  bleverse router summary [--base-url <url>]
+  bleverse router resolve <host> [--base-url <url>]
+  bleverse router upsert <namespace:preview|tenant> <key> <target> [--base-url <url>] [--token <token>] [--env-file <path>]
+  bleverse router delete <namespace:preview|tenant> <key> [--base-url <url>] [--token <token>] [--env-file <path>]
+
+  bleverse preview up [--port <int>] [--key <pr-key>] [--app-dir <path>] [--base-url <url>] [--token <token>] [--env-file <path>]
+  bleverse preview down [--port <int>] [--key <pr-key>] [--base-url <url>] [--token <token>] [--env-file <path>]
+  bleverse preview status [--port <int>] [--key <pr-key>] [--base-url <url>]
+  bleverse preview rebuild [--port <int>] [--unit <name>] [--timeout <sec>]
+
 Examples:
   bleverse app list
-  bleverse app init demo-web web demo /home/blefnk/deploy/reliverse/bleverse bun-web-3090-demo.service https://demo.bleverse.com
-  bleverse app init demo-api api demo /home/blefnk/deploy/reliverse/bleverse bun-api-3091-demo.service https://api.demo.bleverse.com --template owner/repo/tree/main/apps/api/template
+  bleverse app init demo-web web demo /home/blefnk/prod/reliverse/bleverse bun-web-3090-demo.service https://demo.bleverse.com
+  bleverse app init demo-api api demo /home/blefnk/prod/reliverse/bleverse bun-api-3091-demo.service https://api.demo.bleverse.com --template owner/repo/tree/main/apps/api/template
   bleverse app status bleverse-web
   bleverse app deploy bleverse-web
   bleverse api health --base-url https://api.bleverse.com
+  bleverse router summary
+  bleverse router upsert preview pr-42 http://127.0.0.1:4010
+  bleverse preview up --port 3105
+  bleverse preview status --port 3105
+  bleverse preview rebuild --port 3105
+  bleverse preview down --port 3105
 `);
-}
-
-async function deployApp(appId: string) {
-  const deployBin = `${process.env.HOME ?? ""}/.local/bin/bleverse-deploy-app`;
-  const proc = Bun.spawn([deployBin, appId], {
-    stdout: "inherit",
-    stderr: "inherit",
-    stdin: "inherit",
-  });
-  const code = await proc.exited;
-  if (code !== 0) throw new Error(`deploy failed for app ${appId} (exit=${code})`);
 }
 
 async function runGitpick(
@@ -116,54 +129,6 @@ async function runGitpick(
   if (code !== 0) {
     throw new Error(`gitpick failed (exit=${code}). Template: ${template}`);
   }
-}
-
-async function appStatus(appId: string, registryPath?: string) {
-  const registry = await readRegistry(registryPath);
-  const app = getApp(registry, appId);
-  if (!app) throw new Error(`app not found: ${appId}`);
-
-  const uid = `${process.getuid?.() ?? 1000}`;
-  const env = {
-    ...process.env,
-    XDG_RUNTIME_DIR: process.env.XDG_RUNTIME_DIR ?? `/run/user/${uid}`,
-    DBUS_SESSION_BUS_ADDRESS:
-      process.env.DBUS_SESSION_BUS_ADDRESS ?? `unix:path=/run/user/${uid}/bus`,
-  };
-
-  const statusProc = Bun.spawn(["systemctl", "--user", "is-active", app.service], { env });
-  const statusCode = await statusProc.exited;
-  const serviceActive = statusCode === 0;
-
-  let healthOk = false;
-  let healthBody: unknown = null;
-  let healthError = "";
-  try {
-    const url = `${app.smokeUrl.replace(/\/$/, "")}/health`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-    healthOk = true;
-    const ct = res.headers.get("content-type") ?? "";
-    healthBody = ct.includes("application/json") ? await res.json() : await res.text();
-  } catch (err) {
-    healthError = err instanceof Error ? err.message : String(err);
-  }
-
-  console.log(
-    JSON.stringify(
-      {
-        id: app.id,
-        service: app.service,
-        serviceActive,
-        smokeUrl: app.smokeUrl,
-        healthOk,
-        health: healthBody,
-        healthError: healthError || undefined,
-      },
-      null,
-      2,
-    ),
-  );
 }
 
 async function appInit(
@@ -346,13 +311,14 @@ async function main() {
 
     if (action === "deploy") {
       if (!a1) throw new Error("usage: bleverse app deploy <appId>");
-      await deployApp(a1);
+      await deployAppById(a1);
       return;
     }
 
     if (action === "status") {
       if (!a1) throw new Error("usage: bleverse app status <appId> [registryPath]");
-      await appStatus(a1, a2);
+      const status = await getAppStatus(a1, a2);
+      console.log(JSON.stringify(status, null, 2));
       return;
     }
   }
@@ -364,6 +330,132 @@ async function main() {
     const health = await api.getHealth();
     console.log(JSON.stringify(health, null, 2));
     return;
+  }
+
+  if (scope === "router") {
+    const baseUrl = asString(flags["base-url"]);
+    const token = asString(flags["token"]);
+    const envFile = asString(flags["env-file"]);
+
+    if (action === "summary") {
+      const res = await routerRequest("GET", "/_registry/summary", { baseUrl, token, envFile });
+      console.log(JSON.stringify(res.body, null, 2));
+      if (!res.ok) process.exit(1);
+      return;
+    }
+
+    if (action === "resolve") {
+      if (!a1) throw new Error("usage: bleverse router resolve <host> [--base-url <url>]");
+      const res = await routerRequest("GET", `/_resolve?host=${encodeURIComponent(a1)}`, {
+        baseUrl,
+        token,
+        envFile,
+      });
+      console.log(JSON.stringify(res.body, null, 2));
+      if (!res.ok) process.exit(1);
+      return;
+    }
+
+    if (action === "upsert") {
+      if (!a1 || !a2 || !a3) {
+        throw new Error(
+          "usage: bleverse router upsert <namespace:preview|tenant> <key> <target> [--base-url <url>] [--token <token>] [--env-file <path>]",
+        );
+      }
+      if (a1 !== "preview" && a1 !== "tenant") {
+        throw new Error("namespace must be preview|tenant");
+      }
+
+      const res = await routerRequest("POST", "/_admin/upsert", {
+        baseUrl,
+        token,
+        envFile,
+        json: { namespace: a1, key: a2, target: a3 },
+      });
+      console.log(JSON.stringify(res.body, null, 2));
+      if (!res.ok) process.exit(1);
+      return;
+    }
+
+    if (action === "delete") {
+      if (!a1 || !a2) {
+        throw new Error(
+          "usage: bleverse router delete <namespace:preview|tenant> <key> [--base-url <url>] [--token <token>] [--env-file <path>]",
+        );
+      }
+      if (a1 !== "preview" && a1 !== "tenant") {
+        throw new Error("namespace must be preview|tenant");
+      }
+
+      const res = await routerRequest("POST", "/_admin/delete", {
+        baseUrl,
+        token,
+        envFile,
+        json: { namespace: a1, key: a2 },
+      });
+      console.log(JSON.stringify(res.body, null, 2));
+      if (!res.ok) process.exit(1);
+      return;
+    }
+  }
+
+  if (scope === "preview") {
+    const baseUrl = asString(flags["base-url"]);
+    const token = asString(flags["token"]);
+    const envFile = asString(flags["env-file"]);
+    const appDir = asString(flags["app-dir"]);
+    const port = asString(flags["port"]) ? Number(asString(flags["port"])) : undefined;
+    const key = asString(flags["key"]);
+    const unit = asString(flags["unit"]);
+    const timeout = asString(flags["timeout"]) ? Number(asString(flags["timeout"])) : undefined;
+
+    if (port !== undefined && (!Number.isInteger(port) || port < 3000 || port > 65535)) {
+      throw new Error("--port must be an integer between 3000 and 65535");
+    }
+
+    if (timeout !== undefined && (!Number.isInteger(timeout) || timeout < 1 || timeout > 900)) {
+      throw new Error("--timeout must be an integer between 1 and 900 seconds");
+    }
+
+    const opts: PreviewRuntimeOptions = {
+      appDir,
+      port,
+      key,
+      baseUrl,
+      token,
+      envFile,
+      unitName: unit,
+    };
+
+    if (action === "up") {
+      const result = await upPreviewRuntime(opts);
+      console.log(JSON.stringify(result, null, 2));
+      return;
+    }
+
+    if (action === "down") {
+      const result = await downPreviewRuntime(opts);
+      console.log(JSON.stringify(result, null, 2));
+      return;
+    }
+
+    if (action === "status") {
+      const result = await statusPreviewRuntime(opts);
+      console.log(JSON.stringify(result, null, 2));
+      return;
+    }
+
+    if (action === "rebuild") {
+      const effPort = port ?? 3105;
+      const result = await rebuildPreviewRuntime({
+        port: effPort,
+        appDir,
+        unitName: unit,
+        timeoutSeconds: timeout,
+      });
+      console.log(JSON.stringify(result, null, 2));
+      return;
+    }
   }
 
   help();

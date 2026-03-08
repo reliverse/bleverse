@@ -7,7 +7,11 @@
     "dev": "vite dev",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "pr:reload": "bun --cwd ../cli ./src/index.ts preview rebuild",
+    "build:pr": "bun run build && bun run pr:reload",
+    "pr:up": "bun --cwd ../cli ./src/index.ts preview up --port 3105",
+    "pr:down": "bun --cwd ../cli ./src/index.ts preview down --port 3105"
   },
   "dependencies": {
     "@ai-sdk/react": "catalog:",

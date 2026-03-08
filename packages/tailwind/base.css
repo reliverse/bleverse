@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @source "../**/*.{ts,tsx}";
+@source "../../components/**/*.{ts,tsx}";
+@source "../../apps/**/*.{ts,tsx}";
 
 @import "tw-animate-css";
 
@@ -39,6 +41,16 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Bleverse semantic tokens */
+  --brand: hsl(359 60% 48%); /* #C43032 */
+  --canvas: hsl(0 0% 95%); /* #F2F2F2 */
+  --canvas-foreground: hsl(0 0% 9%); /* #181818 */
+  --surface: hsl(0 0% 100%); /* #FFFFFF */
+  --surface-foreground: hsl(0 0% 9%); /* #181818 */
+  --neutral: hsl(0 0% 78%); /* #C6C6C6 */
+  --paper: hsl(0 0% 100%); /* #FFFFFF */
+  --paper-foreground: hsl(0 0% 9%); /* #181818 */
 }
 
 .dark {
@@ -73,6 +85,16 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Bleverse semantic tokens (dark theme) */
+  --brand: hsl(359 60% 48%); /* #C43032 */
+  --canvas: hsl(0 0% 9%); /* #181818 */
+  --canvas-foreground: hsl(0 0% 95%); /* #F2F2F2 */
+  --surface: hsl(0 0% 9%); /* #181818 */
+  --surface-foreground: hsl(0 0% 95%); /* #F2F2F2 */
+  --neutral: hsl(0 0% 78%); /* #C6C6C6 */
+  --paper: hsl(0 0% 95%); /* #F2F2F2 */
+  --paper-foreground: hsl(0 0% 9%); /* #181818 */
 }
 
 @theme inline {
@@ -107,6 +129,15 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
+
+  --color-brand: var(--brand);
+  --color-canvas: var(--canvas);
+  --color-canvas-foreground: var(--canvas-foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-neutral: var(--neutral);
+  --color-paper: var(--paper);
+  --color-paper-foreground: var(--paper-foreground);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
