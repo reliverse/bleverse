@@ -501,6 +501,10 @@
     "packages/sdk": {
       "name": "@bleverse/sdk",
       "version": "0.1.0",
+      "dependencies": {
+        "@repo/db": "workspace:*",
+        "drizzle-orm": "catalog:",
+      },
       "devDependencies": {
         "@types/bun": "catalog:",
         "@typescript/native-preview": "catalog:",

@@ -3,12 +3,17 @@ import { mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import {
+  closeSdkResources,
   createBleverseApiClient,
+  createProject,
+  deleteProject,
   deployAppById,
   downPreviewRuntime,
   getApp,
   getAppStatus,
+  getProjectById,
   listApps,
+  listProjects,
   readRegistry,
   rebuildPreviewRuntime,
   removeApp,
@@ -16,6 +21,7 @@ import {
   routerRequest,
   statusPreviewRuntime,
   upPreviewRuntime,
+  updateProject,
   upsertApp,
   writeRegistry,
   type AppRegistryEntry,
@@ -84,6 +90,12 @@ Usage:
 
   bleverse api health [--base-url <url>] [--token <token>]
 
+  bleverse project list <ownerId>
+  bleverse project get <ownerId> <projectId>
+  bleverse project create <ownerId> <name> <slug> [--description <text>]
+  bleverse project update <ownerId> <projectId> [--name <text>] [--slug <text>] [--description <text>] [--archived <true|false>]
+  bleverse project delete <ownerId> <projectId>
+
   bleverse router summary [--base-url <url>]
   bleverse router resolve <host> [--base-url <url>]
   bleverse router upsert <namespace:preview|tenant> <key> <target> [--base-url <url>] [--token <token>] [--env-file <path>]
@@ -101,6 +113,8 @@ Examples:
   bleverse app status bleverse-web
   bleverse app deploy bleverse-web
   bleverse api health --base-url https://api.bleverse.com
+  bleverse project create user_123 "My First Project" my-first-project --description "hello"
+  bleverse project list user_123
   bleverse router summary
   bleverse router upsert preview pr-42 http://127.0.0.1:4010
   bleverse preview up --port 3105
@@ -332,6 +346,65 @@ async function main() {
     return;
   }
 
+  if (scope === "project") {
+    if (action === "list") {
+      if (!a1) throw new Error("usage: bleverse project list <ownerId>");
+      const rows = await listProjects(a1);
+      console.log(JSON.stringify(rows, null, 2));
+      return;
+    }
+
+    if (action === "get") {
+      if (!a1 || !a2) throw new Error("usage: bleverse project get <ownerId> <projectId>");
+      const row = await getProjectById(a1, a2);
+      if (!row) throw new Error(`project not found: ${a2}`);
+      console.log(JSON.stringify(row, null, 2));
+      return;
+    }
+
+    if (action === "create") {
+      if (!a1 || !a2 || !a3) {
+        throw new Error(
+          "usage: bleverse project create <ownerId> <name> <slug> [--description <text>]",
+        );
+      }
+      const row = await createProject({
+        ownerId: a1,
+        name: a2,
+        slug: a3,
+        description: asString(flags["description"]),
+      });
+      console.log(JSON.stringify(row, null, 2));
+      return;
+    }
+
+    if (action === "update") {
+      if (!a1 || !a2) {
+        throw new Error(
+          "usage: bleverse project update <ownerId> <projectId> [--name <text>] [--slug <text>] [--description <text>] [--archived <true|false>]",
+        );
+      }
+      const row = await updateProject({
+        ownerId: a1,
+        id: a2,
+        name: asString(flags["name"]),
+        slug: asString(flags["slug"]),
+        description: asString(flags["description"]),
+        isArchived: flags["archived"] !== undefined ? asBool(flags["archived"]) : undefined,
+      });
+      if (!row) throw new Error(`project not found: ${a2}`);
+      console.log(JSON.stringify(row, null, 2));
+      return;
+    }
+
+    if (action === "delete") {
+      if (!a1 || !a2) throw new Error("usage: bleverse project delete <ownerId> <projectId>");
+      const ok = await deleteProject(a1, a2);
+      console.log(JSON.stringify({ ok, ownerId: a1, id: a2 }, null, 2));
+      return;
+    }
+  }
+
   if (scope === "router") {
     const baseUrl = asString(flags["base-url"]);
     const token = asString(flags["token"]);
@@ -462,7 +535,12 @@ async function main() {
   process.exit(1);
 }
 
-main().catch((err) => {
-  console.error(err instanceof Error ? err.message : String(err));
-  process.exit(1);
-});
+main()
+  .catch((err) => {
+    console.error(err instanceof Error ? err.message : String(err));
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await closeSdkResources();
+    process.exit(process.exitCode ?? 0);
+  });

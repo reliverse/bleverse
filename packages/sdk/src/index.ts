@@ -1,7 +1,12 @@
 import { spawn } from "node:child_process";
+import { randomUUID } from "node:crypto";
 import { readFile, stat, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+
+import { db } from "@repo/db";
+import { project } from "@repo/db/schema";
+import { and, eq } from "drizzle-orm";
 
 export type AppRegistryEntry = {
   id: string;
@@ -57,6 +62,104 @@ export function upsertApp(registry: AppRegistry, app: AppRegistryEntry): AppRegi
 
 export function removeApp(registry: AppRegistry, appId: string): AppRegistry {
   return { apps: registry.apps.filter((a) => a.id !== appId) };
+}
+
+export type ProjectEntity = {
+  id: string;
+  ownerId: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  isArchived: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type CreateProjectInput = {
+  ownerId: string;
+  name: string;
+  slug: string;
+  description?: string;
+};
+
+export type UpdateProjectInput = {
+  ownerId: string;
+  id: string;
+  name?: string;
+  slug?: string;
+  description?: string | null;
+  isArchived?: boolean;
+};
+
+function normalizeSlug(slug: string): string {
+  return slug.trim().toLowerCase().replace(/[^a-z0-9-]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+export async function listProjects(ownerId: string): Promise<ProjectEntity[]> {
+  return await db.select().from(project).where(eq(project.ownerId, ownerId)).orderBy(project.createdAt);
+}
+
+export async function getProjectById(ownerId: string, id: string): Promise<ProjectEntity | null> {
+  const rows = await db
+    .select()
+    .from(project)
+    .where(and(eq(project.ownerId, ownerId), eq(project.id, id)))
+    .limit(1);
+  return rows[0] ?? null;
+}
+
+export async function createProject(input: CreateProjectInput): Promise<ProjectEntity> {
+  const slug = normalizeSlug(input.slug);
+  if (!slug) throw new Error("slug is required");
+
+  const row = {
+    id: randomUUID(),
+    ownerId: input.ownerId,
+    name: input.name.trim(),
+    slug,
+    description: input.description?.trim() || null,
+  };
+
+  const inserted = await db.insert(project).values(row).returning();
+  return inserted[0] as ProjectEntity;
+}
+
+export async function updateProject(input: UpdateProjectInput): Promise<ProjectEntity | null> {
+  const patch: Partial<typeof project.$inferInsert> = {};
+
+  if (input.name !== undefined) patch.name = input.name.trim();
+  if (input.slug !== undefined) patch.slug = normalizeSlug(input.slug);
+  if (input.description !== undefined) patch.description = input.description?.trim() || null;
+  if (input.isArchived !== undefined) patch.isArchived = input.isArchived;
+
+  if (Object.keys(patch).length === 0) {
+    return await getProjectById(input.ownerId, input.id);
+  }
+
+  const updated = await db
+    .update(project)
+    .set(patch)
+    .where(and(eq(project.ownerId, input.ownerId), eq(project.id, input.id)))
+    .returning();
+
+  return updated[0] ?? null;
+}
+
+export async function deleteProject(ownerId: string, id: string): Promise<boolean> {
+  const deleted = await db
+    .delete(project)
+    .where(and(eq(project.ownerId, ownerId), eq(project.id, id)))
+    .returning({ id: project.id });
+  return deleted.length > 0;
+}
+
+export async function closeSdkResources(): Promise<void> {
+  try {
+    const client = (db as { $client?: { end?: (opts?: unknown) => Promise<unknown> } }).$client;
+    if (client?.end) await client.end({ timeout: 1 });
+  } catch {
+    // best-effort
+  }
 }
 
 async function spawnExitCode(command: string[], inherit = false): Promise<number> {

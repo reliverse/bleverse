@@ -14,6 +14,10 @@
     "check": "bun --eval \"import('./src/index.ts').then(()=>console.log('ok'))\"",
     "typecheck": "tsgo --noEmit"
   },
+  "dependencies": {
+    "@repo/db": "workspace:*",
+    "drizzle-orm": "catalog:"
+  },
   "devDependencies": {
     "@types/bun": "catalog:",
     "@typescript/native-preview": "catalog:"

@@ -10,8 +10,8 @@ export const Route = createFileRoute("/")({
 function LandingPage() {
   return (
     <main className="min-h-svh overflow-x-hidden bg-canvas">
-      <LandingHero callbackURL="/app" />
-      <LandingAuthCard callbackURL="/app" />
+      <LandingHero callbackURL="/projects" />
+      <LandingAuthCard callbackURL="/projects" />
     </main>
   );
 }

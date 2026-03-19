@@ -40,4 +40,3 @@ temp
 DO_NOT_COMMIT_HERE.md
 .githooks/pre-commit
 .githooks/pre-push
-
