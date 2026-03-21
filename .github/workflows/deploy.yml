@@ -1,4 +1,4 @@
-name: Deploy Bleverse/Reliverse Monorepo
+name: Deploy Bleverse Monorepo
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       target:
-        description: "Optional single target (bleverse-web | bleverse-api | reliverse-web | reliverse-api). Empty = deploy bleverse web+api"
+        description: "Target selector (bleverse | bleverse-web | bleverse-api). Empty = deploy bleverse"
         required: false
         default: ""
         type: string
@@ -95,15 +95,15 @@ jobs:
           fi
 
           case "$REQUESTED_SELECTOR" in
-            "" )
+            ""|"bleverse" )
               DEPLOY_SELECTORS="bleverse-web,bleverse-api"
               ;;
-            "bleverse-web"|"bleverse-api"|"reliverse-web"|"reliverse-api" )
+            "bleverse-web"|"bleverse-api" )
               DEPLOY_SELECTORS="$REQUESTED_SELECTOR"
               ;;
             * )
               echo "❌ Unsupported target selector: $REQUESTED_SELECTOR"
-              echo "   Allowed: bleverse-web | bleverse-api | reliverse-web | reliverse-api | empty(default bleverse web+api)"
+              echo "   Allowed: bleverse | bleverse-web | bleverse-api | empty(default bleverse)"
               exit 2
               ;;
           esac
