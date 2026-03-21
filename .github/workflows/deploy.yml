@@ -115,7 +115,7 @@ jobs:
           DEPLOY_SELECTORS_CSV="${DEPLOY_SELECTORS:-bleverse-web,bleverse-api}"
           DEPLOY_BIN="$HOME/.local/bin/bleverse-deploy-app"
           REG="${DEPLOY_REGISTRY_PATH:-/home/deploy/.config/bleverse/deploy.json}"
-          SOURCE_ROOT="${DEPLOY_SOURCE_ROOT:-/home/deploy/prod/_tmp-source}"
+          SOURCE_ROOT="${DEPLOY_SOURCE_ROOT:-/home/deploy/prod/.checkouts}"
           if [[ "$SOURCE_ROOT" == "/home/blefnk/repos" || "$SOURCE_ROOT" == "/home/blefnk/dev" ]]; then
             echo "ℹ️ overriding legacy SOURCE_ROOT '$SOURCE_ROOT' -> /home/deploy/prod/_tmp-source"
             SOURCE_ROOT="/home/deploy/prod/_tmp-source"
