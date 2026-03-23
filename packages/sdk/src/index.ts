@@ -353,7 +353,7 @@ export async function rebuildPreviewRuntime(
   }
 
   const unit = resolvePreviewUnitName(options);
-  const appDir = options.appDir ?? "/home/blefnk/dev/bleverse/apps/web";
+  const appDir = options.appDir ?? "/home/blefnk/dev/reliverse/bleverse/apps/web";
   const healthUrl = options.healthUrl ?? `http://127.0.0.1:${options.port}/health`;
   const timeoutSeconds = options.timeoutSeconds ?? 120;
 
@@ -485,7 +485,7 @@ export type PreviewRuntimeDownResult = {
 function previewDefaults(options?: PreviewRuntimeOptions) {
   const port = options?.port ?? 3105;
   const key = options?.key ?? `pr-${port}`;
-  const appDir = options?.appDir ?? "/home/blefnk/dev/bleverse/apps/web";
+  const appDir = options?.appDir ?? "/home/blefnk/dev/reliverse/bleverse/apps/web";
   const domain = options?.domain ?? "bleverse.com";
   const unit =
     options?.unitName ?? `${options?.unitPrefix ?? "bleverse-preview-web"}-${port}`;
