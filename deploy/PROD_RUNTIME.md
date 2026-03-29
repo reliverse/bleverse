@@ -41,7 +41,15 @@ Current Bleverse prod services run from:
 - `current/apps/web`
 - `current/apps/api`
 
-Bleverse does not currently require canonical shared env files under `shared/` for web/api startup.
+Bleverse prod now uses deploy-owned env files outside the release tree:
+- `/home/deploy/.config/bleverse/bleverse-web.env`
+- `/home/deploy/.config/bleverse/bleverse-api.env`
+
+Current DB contract is environment-split:
+- dev -> `bleverse_dev`
+- prod -> `bleverse_prod`
+
+These files are the canonical live runtime env surface for Bleverse web/api.
 The `shared/` directory remains reserved for future durable runtime config if needed.
 
 ## Systemd user units

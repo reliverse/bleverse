@@ -9,6 +9,7 @@ Type=simple
 WorkingDirectory=/home/deploy/prod/reliverse/bleverse/current/apps/web
 Environment=PORT=4000
 Environment=NODE_ENV=production
+EnvironmentFile=/home/deploy/.config/bleverse/bleverse-web.env
 ExecStart=/usr/local/bin/bun run start
 Restart=on-failure
 RestartSec=3
